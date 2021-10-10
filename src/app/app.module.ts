@@ -19,7 +19,7 @@ import { MenuComponent } from '../views/menu/menu.component';
 import { ClientRegisterFormComponent } from '../components/client-register-form/client-register-form.component';
 import { ToastrModule } from 'ngx-toastr';
 import { RestaurantRegisterFormComponent } from '../components/restaurant-register-form/restaurant-register-form.component';
-import { LoginFormComponent } from '../components/login-form/login-form.component'
+import { LoginFormComponent } from '../components/login-form/login-form.component';
 
 const globalRippleConfig: RippleGlobalOptions = {
   disabled: true,
@@ -31,7 +31,15 @@ const globalRippleConfig: RippleGlobalOptions = {
 };
 
 @NgModule({
-  declarations: [AppComponent, SideNavComponent, NotFoundComponent, MenuComponent, ClientRegisterFormComponent, RestaurantRegisterFormComponent, LoginFormComponent],
+  declarations: [
+    AppComponent,
+    SideNavComponent,
+    NotFoundComponent,
+    MenuComponent,
+    ClientRegisterFormComponent,
+    RestaurantRegisterFormComponent,
+    LoginFormComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -42,7 +50,9 @@ const globalRippleConfig: RippleGlobalOptions = {
     HttpClientModule,
     MatNativeDateModule,
     ReactiveFormsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right',
+    }),
   ],
   providers: [
     { provide: MAT_RIPPLE_GLOBAL_OPTIONS, useValue: globalRippleConfig },

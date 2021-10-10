@@ -11,6 +11,8 @@
         [(ngModel)]="serviceLogin.formDataLogin.email"
         required
         autocomplete="off"
+        cdkFocusInitial 
+        placeholder="Email"
       />
       <mat-error *ngIf="email.invalid">{{
         getErrorMessage(email)
@@ -26,6 +28,7 @@
         [(ngModel)]="serviceLogin.formDataLogin.password"
         autocomplete="off"
         required
+        placeholder="Password"
       />
       <mat-error *ngIf="password.invalid">{{
         getErrorMessage(password)
@@ -49,7 +52,8 @@
       class="form-button"
       [disabled]="form.invalid"
       (click)="login()"
+      href="#"
       >
-        Submit
+        Login
     </button>
 </mat-dialog-actions>

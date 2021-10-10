@@ -1,3 +1,4 @@
+              
 <h2 mat-dialog-title>Client Register</h2>
 <mat-dialog-content class="mat-typography">
   <form autocomplete="off" novalidate #form="ngForm">
@@ -14,6 +15,8 @@
               [(ngModel)]="serviceClient.formDataClient.firstName"
               required
               autocomplete="off"
+              cdkFocusInitial 
+              placeholder="First Name"
             />
             <mat-error *ngIf="firstName.invalid">{{
               getErrorMessage(firstName)
@@ -208,9 +211,9 @@
     <button 
       mat-button 
       [mat-dialog-close]="true" 
-      cdkFocusInitial 
       class="form-button"
       (click)="onSubmit(form)"
+      [disabled]="form.invalid"
       >
         Submit
     </button>

@@ -1,5 +1,9 @@
 h1.app-name {
-  margin-left: 8px;
+  margin-left: 3%;
+  border-radius: 10px;
+  border: 2px solid white;
+  padding-right: 10px;
+  padding-left: 10px;
 }
 
 .container {
@@ -49,7 +53,7 @@ mat-nav-list {
 }
 
 .btn.btn-register {
-  margin-left: 75%;
+  margin-left: 69%;
 }
 
 .btn.btn-login {
@@ -75,7 +79,37 @@ mat-nav-list {
 }
 
 .register-menu-button:hover {
-  color: #fcfcfc;
+  color: #fcfcfc !important;
   background-color: rgb(235, 57, 93);
-  border: 2px solid #fcfcfc !important;
+}
+
+.userName {
+  margin-left: 73%;
+  color: black;
+  border-radius: 10px;
+  border: 2px solid #000;
+  padding-right: 6px;
+  padding-left: 10px;
+  text-align: center;
+  font-size: 1.2rem;
+  background-color: transparent;
+}
+
+.userName:hover {
+  color: white;
+}
+
+.mini-fab {
+  background-color: white;
+  color: #000;
+}
+
+.mini-fab:active {
+  background-color: #e54e43;
+}
+
+.register-menu-button.user-menu {
+  background-color: crimson !important;
+  height: 64px;
+  color: black;
 }

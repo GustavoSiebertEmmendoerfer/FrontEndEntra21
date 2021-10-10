@@ -1,25 +1,34 @@
 <div class="container">
   <mat-toolbar class="toolbar">
-    <button mat-icon-button (click)="sidenav.toggle()">
+    <button class="mini-fab" matRipple mat-mini-fab (click)="sidenav.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
     <h1 class="app-name">Gustavo Marmitas</h1>
-    <button mat-raised-button class="btn btn-register" [matMenuTriggerFor]="register">
+    <button *ngIf="!serviceLogin.isUserLogged()" mat-raised-button class="btn btn-register" [matMenuTriggerFor]="register">
         <span>Register</span> 
         <mat-icon>keyboard_arrow_down</mat-icon>
     </button>
     <mat-menu #register="matMenu">
       <button mat-menu-item class="register-menu-button" (click)="serviceClient.openClientRegister()">
           <span>Client</span>
-        </button>
-      <button mat-menu-item class="register-menu-button" (click)="serviceRestaurant.openRestaurantRegister()">
+      </button>
+      <button mat-menu-item class="register-menu-button" (click)="serviceRestaurant.openRestaurantRegister()" >
           <span>Restaurant</span>
-        </button>
+      </button>
     </mat-menu>
-    <button mat-raised-button class="btn btn-login" (click)="serviceLogin.openLogin()">
+    <button *ngIf="!serviceLogin.isUserLogged()" mat-flat-button class="btn btn-login" (click)="serviceLogin.openLogin()">
         <span>Login </span>
         <mat-icon>person_outline</mat-icon>
     </button>
+    <button mat-raised-button *ngIf="serviceLogin.isUserLogged()" class="userName" [matMenuTriggerFor]="userInformation">
+      <span>{{serviceLogin.user.fullName}}</span>
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #userInformation="matMenu">
+      <button mat-menu-item class="register-menu-button user-menu" (click)="serviceLogin.onLogout()" >
+        <span>Logout</span>
+    </button>
+    </mat-menu>
   </mat-toolbar>
   <mat-sidenav-container class="sidenav-container">
     <mat-sidenav #sidenav [mode]="'over'">

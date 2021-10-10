@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { ResponseModel } from 'src/models/response';
 import { LoginService } from 'src/services/login.service';
 
@@ -9,7 +11,7 @@ import { LoginService } from 'src/services/login.service';
 })
 export class LoginFormComponent implements OnInit {
 
-  constructor(public serviceLogin:LoginService) { }
+  constructor(public serviceLogin:LoginService, private toastr:ToastrService, private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -24,6 +26,12 @@ export class LoginFormComponent implements OnInit {
   login() {
     this.serviceLogin.confirmLogin().subscribe((data:ResponseModel) => {
         localStorage.setItem('userInfo', JSON.stringify(data.dateSet))
+        if (this.serviceLogin.isUserLogged()) {
+          this.toastr.success('Logged Successfully', 'Login')
+          this.router.navigate(["/menu"])
+        } else {
+          this.toastr.error(data.responseMessage, 'Error on Login')
+        }
       }
     )
   }
