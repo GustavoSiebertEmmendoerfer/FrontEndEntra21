@@ -1,0 +1,217 @@
+<h2 mat-dialog-title>Client Register</h2>
+<mat-dialog-content class="mat-typography">
+  <form autocomplete="off" novalidate #form="ngForm">
+    <table class="max-lenght" cellspacing="15">
+      <tr>
+        <td>
+          <mat-form-field appearance="outline" class="max-lenght">
+            <mat-label>First Name</mat-label>
+            <input
+              matInput
+              type="search"
+              name="firstName"
+              #firstName="ngModel"
+              [(ngModel)]="serviceClient.formDataClient.firstName"
+              required
+              autocomplete="off"
+            />
+            <mat-error *ngIf="firstName.invalid">{{
+              getErrorMessage(firstName)
+            }}</mat-error>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field appearance="outline" class="max-lenght">
+            <mat-label>Last Name</mat-label>
+            <input
+              matInput
+              type="search"
+              name="lastName"
+              #lastName="ngModel"
+              [(ngModel)]="serviceClient.formDataClient.lastName"
+              autocomplete="off"
+            />
+            <mat-error *ngIf="lastName.invalid">{{
+              getErrorMessage(lastName)
+            }}</mat-error>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field appearance="outline" class="max-lenght">
+            <mat-label>Phone Number</mat-label>
+            <input
+              matInput
+              type="search"
+              name="phoneNumber"
+              #phoneNumber="ngModel"
+              [(ngModel)]="serviceClient.formDataClient.phoneNumber"
+              maxlength="15"
+              minlength="15"
+              placeholder="(__) _____-____"
+              autocomplete="off"
+              onkeyup="
+            var phoneNumber = this.value;
+            if (phoneNumber.match(/^[A-Z]|[a-z]$/) !== null){
+              this.value = '';
+            }"
+              onkeydown="
+              var phoneNumber = this.value;
+              if (window.event.keyCode == 8) { }
+              else if (phoneNumber.match(/^[A-Z]|[a-z]$/) !== null){
+                this.value = ' ';
+              }
+              else if (phoneNumber.match(/^\d$/) !== null){
+                this.value = '(' + phoneNumber;
+              }
+              else if (phoneNumber.match(/^\(\d{2}$/) !== null){
+                this.value = phoneNumber + ') ';
+              }
+              else if (phoneNumber.match(/^\(\d{2}\) \d{5}$/) !== null) {
+                this.value = phoneNumber + '-';
+              }"
+            />
+            <mat-error *ngIf="phoneNumber.invalid">{{
+              getErrorMessage(phoneNumber)
+            }}</mat-error>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field appearance="outline" class="max-lenght">
+            <mat-label>CPF</mat-label>
+            <input
+              matInput
+              type="search"
+              minlength="14"
+              maxlength="14"
+              name="cpf"
+              #cpf="ngModel"
+              [(ngModel)]="serviceClient.formDataClient.cpf"
+              required
+              placeholder="___.___.___-__"
+              autocomplete="off"
+              onkeyup="
+              var cpf = this.value;
+              if (cpf.match(/^[A-Z]|[a-z]$/) !== null){
+                  this.value = '';
+              }"
+              onkeydown="
+              var cpf = this.value;
+              if (window.event.keyCode == 8) { }
+              else if (cpf.match(/^\d{3}$/) !== null){
+                  this.value = cpf + '.';
+              }
+              else if (cpf.match(/^\d{3}\.\d{3}$/) !== null){
+                  this.value = cpf + '.';
+              }
+              else if (cpf.match(/^\d{3}\.\d{3}\.\d{3}$/) !== null) {
+                  this.value = cpf + '-';
+              }"
+            />
+            <mat-error *ngIf="cpf.invalid">{{
+              getErrorMessage(cpf)
+            }}</mat-error>
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+    <table class="max-lenght" cellspacing="15">
+      <tr>
+        <td>
+          <mat-form-field appearance="outline" class="max-lenght">
+            <mat-label>Address</mat-label>
+            <input
+              matInput
+              type="search"
+              name="address"
+              placeholder="Example: Rua Aurora, 57"
+              #address="ngModel"
+              [(ngModel)]="serviceClient.formDataClient.address"
+              autocomplete="off"
+            />
+            <mat-error *ngIf="address.invalid">{{
+              getErrorMessage(address)
+            }}</mat-error>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field appearance="outline" class="max-lenght">
+            <mat-label>Email</mat-label>
+            <input
+              matInput
+              type="search"
+              name="email"
+              placeholder="Example: beautifulemail@gmail.com"
+              #email="ngModel"
+              [(ngModel)]="serviceClient.formDataClient.email"
+              required
+              autocomplete="off"
+            />
+            <mat-error *ngIf="email.invalid">{{
+              getErrorMessage(email)
+            }}</mat-error>
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+    <table class="max-lenght" cellspacing="15">
+      <tr>
+        <td>
+          <mat-form-field appearance="outline" class="max-lenght">
+            <mat-label>Password</mat-label>
+            <input
+              matInput
+              type="search"
+              name="password"
+              placeholder="Your Password"
+              #password="ngModel"
+              [(ngModel)]="serviceClient.formDataClient.password"
+              required
+              autocomplete="off"
+            />
+            <mat-error *ngIf="password.invalid">{{
+              getErrorMessage(password)
+            }}</mat-error>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field appearance="outline" class="max-lenght">
+            <mat-label>Confirm Password</mat-label>
+            <input
+              matInput
+              type="search"
+              name="confirmPassword"
+              placeholder="Your confirmPassword"
+              #confirmPassword="ngModel"
+              [(ngModel)]="serviceClient.confirmPassword"
+              required
+              autocomplete="off"
+            />
+            <mat-error *ngIf="confirmPassword.invalid">{{
+              getErrorMessage(confirmPassword)
+            }}</mat-error>
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+  </form>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button 
+      mat-button 
+      mat-dialog-close 
+      class="form-button" 
+      #cancelButton
+      (click)="resetForm(form)"
+      >
+        Cancel
+    </button>
+    <button 
+      mat-button 
+      [mat-dialog-close]="true" 
+      cdkFocusInitial 
+      class="form-button"
+      (click)="onSubmit(form)"
+      >
+        Submit
+    </button>
+</mat-dialog-actions>

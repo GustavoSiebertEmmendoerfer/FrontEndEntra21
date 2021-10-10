@@ -1,0 +1,41 @@
+<div class="container">
+  <mat-toolbar class="toolbar">
+    <button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <h1 class="app-name">Gustavo Marmitas</h1>
+    <button mat-raised-button class="btn btn-register" [matMenuTriggerFor]="register">
+        <span>Register</span> 
+        <mat-icon>keyboard_arrow_down</mat-icon>
+    </button>
+    <mat-menu #register="matMenu">
+      <button mat-menu-item class="register-menu-button" (click)="serviceClient.openClientRegister()">
+          <span>Client</span>
+        </button>
+      <button mat-menu-item class="register-menu-button" (click)="serviceRestaurant.openRestaurantRegister()">
+          <span>Restaurant</span>
+        </button>
+    </mat-menu>
+    <button mat-raised-button class="btn btn-login" (click)="serviceLogin.openLogin()">
+        <span>Login </span>
+        <mat-icon>person_outline</mat-icon>
+    </button>
+  </mat-toolbar>
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #sidenav [mode]="'over'">
+      <mat-nav-list>
+        <button mat-button class="menu-button" routerLink="../menu">
+          <mat-icon>home</mat-icon>
+          <span>Home</span>
+        </button>
+        <button mat-button class="menu-button">
+          <mat-icon>account_box</mat-icon>
+          <span>Profile</span>
+        </button>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <router-outlet> </router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
