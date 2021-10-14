@@ -16,13 +16,14 @@ export class ClientService {
     private http:HttpClient
   ) { }
 
-  readonly ClientURL = `https://localhost:44308/api/User/`;
+  readonly ClientURL = `https://localhost:44308/api/Register/`;
   formDataClient:Client = new Client();
   clientList: Client[] = [];  
   confirmPassword:string = '';
 
   openClientRegister() {
     const dialogRef = this.dialog.open(ClientRegisterFormComponent);
+    dialogRef.disableClose = true
   }
 
   confirmClientPassword() {

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, NgModel } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Restaurant } from 'src/models/restaurant';
+import { LoginService } from 'src/services/login.service';
 import { RestaurantService } from 'src/services/restaurant.service';
 
 @Component({
@@ -11,52 +12,45 @@ import { RestaurantService } from 'src/services/restaurant.service';
 })
 export class RestaurantRegisterFormComponent implements OnInit {
 
-  constructor(public serviceRestaurant:RestaurantService, private toastr: ToastrService) { }
+  constructor(
+    public serviceRestaurant: RestaurantService, 
+    public serviceLogin: LoginService,
+    private toastr: ToastrService
+  ) { }
 
   ngOnInit(): void {
   }
 
-  getErrorMessage(input:any) {
+  getErrorMessage(input: NgModel) {
     if (input.hasError('required')) {
-      return 'You must enter a value';
+      return 'You must enter a value!';
     }
-    return ''
+    if (input.invalid) {
+      return 'Please enter a valid value!';
+    }
+    return '';
   }
 
   onSubmit(form: NgForm) {
     if (this.serviceRestaurant.confirmRestaurantPassword()) {
-      if (this.serviceRestaurant.formDataRestaurant.userId == 0) {
-        this.insertRestaurant(form);
-      } else {
-        this.updateRestaurant(form);
-      }
+      this.insertRestaurant(form);
     } else {
       this.toastr.error('Your passwords do not match', 'Restaurant Register');
-    }
+      this.serviceRestaurant.openRestaurantRegister();
+    } 
   }
 
   insertRestaurant(form: NgForm) {
     this.serviceRestaurant.postRestaurant().subscribe(
       (res) => {
         this.resetForm(form);
-        this.serviceRestaurant.refreshRestaurantList();
+        this.serviceRestaurant.confirmPassword = '';
         this.toastr.success('Submitted succesfully', 'Restaurant Register');
+        this.serviceLogin.openLogin();
       },
       (err) => {
         console.log(err);
-      }
-    );
-  }
-
-  updateRestaurant(form: NgForm) {
-    this.serviceRestaurant.putRestaurant().subscribe(
-      (res) => {
         this.resetForm(form);
-        this.serviceRestaurant.refreshRestaurantList();
-        this.toastr.info('Updated succesfully', 'Restaurant Register');
-      },
-      (err) => {
-        console.log(err);
       }
     );
   }

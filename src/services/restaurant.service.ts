@@ -14,13 +14,14 @@ export class RestaurantService {
     private http:HttpClient
   ) { }
 
-  readonly RestaurantURL = `https://localhost:44335/api/Restaurant`;
+  readonly RestaurantURL = `https://localhost:44308/api/Register/`;
   formDataRestaurant:Restaurant = new Restaurant();
   RestaurantList: Restaurant[] = [];  
   confirmPassword:string = '';
 
   openRestaurantRegister() {
     const dialogRef = this.dialog.open(RestaurantRegisterFormComponent);
+    dialogRef.disableClose = true
   }
 
   confirmRestaurantPassword() {
@@ -31,14 +32,7 @@ export class RestaurantService {
   }
 
   postRestaurant() {
-    return this.http.post(this.RestaurantURL, this.formDataRestaurant);
-  }
-
-  putRestaurant() {
-    return this.http.put(
-      `${this.RestaurantURL}/${this.formDataRestaurant.userId}`,
-      this.formDataRestaurant
-    );
+    return this.http.post(this.RestaurantURL+'RegisterRestaurant', this.formDataRestaurant);
   }
 
   deleteRestaurant(id: number) {

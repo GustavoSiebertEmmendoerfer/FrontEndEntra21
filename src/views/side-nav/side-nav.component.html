@@ -37,7 +37,11 @@
           <mat-icon>home</mat-icon>
           <span>Home</span>
         </button>
-        <button mat-button class="menu-button">
+        <button 
+          mat-button 
+          class="menu-button"
+          *ngIf="serviceLogin.isUserRestaurant()"
+          routerLink="../profile-restaurant">
           <mat-icon>account_box</mat-icon>
           <span>Profile</span>
         </button>

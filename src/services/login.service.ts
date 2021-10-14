@@ -40,6 +40,15 @@ export class LoginService {
     return true;
   }
 
+  isUserRestaurant() {
+    if (this.isUserLogged()) {
+      if (JSON.parse(localStorage.getItem('userInfo')).roles[0] = 'Restaurant') {
+        return true
+      }
+    }
+    return false
+  }
+
   onLogout() {
     localStorage.removeItem('userInfo');
     this.router.navigate(['/menu']);

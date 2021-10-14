@@ -14,6 +14,8 @@
               [(ngModel)]="serviceRestaurant.formDataRestaurant.userName"
               required
               autocomplete="off"
+              cdkFocusInitial 
+              placeholder="Name of the Restaurant"
             />
             <mat-error *ngIf="userName.invalid">{{
               getErrorMessage(userName)
@@ -61,7 +63,7 @@
         </td>
         <td>
           <mat-form-field appearance="outline" class="max-lenght">
-            <mat-label>CPF</mat-label>
+            <mat-label>CNPJ</mat-label>
             <input
               matInput
               type="search"
@@ -70,7 +72,7 @@
               [(ngModel)]="serviceRestaurant.formDataRestaurant.cnpj"
               required
               minlength="14"
-              maxlenght="14"
+              maxlength="14"
               placeholder="___.___.___-__"
               autocomplete="off"
               onkeyup="
