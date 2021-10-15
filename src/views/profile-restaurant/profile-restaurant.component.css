@@ -1,3 +1,13 @@
+@media only screen and (min-width: 1900px) {
+    .icon-photo {
+        margin: 10% !important;
+    }
+
+    .plates-layout {
+        height: 60% !important;
+    }
+  }
+
 .banner {
     background-color: gray;
     border: 2px solid black;
@@ -49,12 +59,71 @@
     border-radius: 20px;
 }
 
-.plate-img {
-    height: 30%;
-    width: 30%;
+
+.marmita-content {
+    display: flex;
+    flex-direction: row;
+    padding: 30px;
+    border: 5px solid black;
+    margin-left: 30px;
+    margin-right: 30px;
+    justify-content: space-between;
+    border-radius: 70px;
 }
 
 .img {
-    height: max-content;
-    width: max-content;
+    height: 100%;
+    width: 100%;
 }
+
+.plate-img {
+    height: 350px;
+    width: 460px;
+    align-self: flex-start;
+    border: 3px solid black;
+    border-radius: 50px;
+    overflow: hidden;
+}
+
+.marmita-data {
+    background-color: aqua;
+    height: 350px;
+    width: 460px;
+    border: 3px solid black;
+    border-radius: 50px;
+}
+
+.buttons {
+    height: 350px;
+    width: 460px;
+    background-color: aliceblue;
+    border: 3px solid black;
+    border-radius: 50px;
+}
+
+.marmita-data {
+    position: relative;
+}
+
+.nome-marmita {
+    font-size: 1.5rem;
+    padding-left: 20px;
+    color: black;
+    top: 20px;
+    position: relative;
+}
+
+.preco-marmita {
+    font-size: 1.5rem;
+    color: black;
+    top: 20px;
+    position: relative;
+    margin-left: 160px;
+}
+
+.descricao-marmita {
+    padding: 20px;
+    top: 50px;
+    height: 200px;
+    position: relative;
+} 

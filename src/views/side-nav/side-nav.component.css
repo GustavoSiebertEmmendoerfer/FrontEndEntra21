@@ -113,3 +113,9 @@ mat-nav-list {
   height: 64px;
   color: black;
 }
+
+@media only screen and (min-width: 1900px) {
+  .btn.btn-register {
+    margin-left: 69%;
+  }
+}
