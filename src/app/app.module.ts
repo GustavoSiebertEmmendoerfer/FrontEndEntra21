@@ -20,6 +20,7 @@ import { ClientRegisterFormComponent } from '../components/client-register-form/
 import { ToastrModule } from 'ngx-toastr';
 import { RestaurantRegisterFormComponent } from '../components/restaurant-register-form/restaurant-register-form.component';
 import { LoginFormComponent } from '../components/login-form/login-form.component';
+import { ProfileRestaurantComponent } from '../views/profile-restaurant/profile-restaurant.component';
 
 const globalRippleConfig: RippleGlobalOptions = {
   disabled: true,
@@ -39,6 +40,7 @@ const globalRippleConfig: RippleGlobalOptions = {
     ClientRegisterFormComponent,
     RestaurantRegisterFormComponent,
     LoginFormComponent,
+    ProfileRestaurantComponent,
   ],
   imports: [
     BrowserModule,
