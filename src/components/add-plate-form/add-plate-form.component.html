@@ -1,0 +1,87 @@
+<h2 mat-dialog-title>Add Plate</h2>
+<mat-dialog-content class="mat-typography">
+  <form autocomplete="off" novalidate #form="ngForm">
+    <mat-form-field appearance="outline" class="max-lenght">
+      <mat-label>Name of the Plate</mat-label>
+      <input
+        matInput
+        type="search"
+        name="name"
+        #name="ngModel"
+        [(ngModel)]="servicePlate.formDataPlate.name"
+        required
+        autocomplete="off"
+        cdkFocusInitial 
+        placeholder="Plate's name"
+      />
+      <mat-error *ngIf="name.invalid">{{
+        getErrorMessage(name)
+      }}</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="max-lenght">
+      <mat-label>Price</mat-label>
+      <input
+        matInput
+        type="search"
+        name="price"
+        #price="ngModel"
+        [(ngModel)]="servicePlate.formDataPlate.price"
+        autocomplete="off"
+        required
+        minlength="5"
+        maxlength="5"
+        placeholder="Plate's price"
+        onkeydown="
+        var price = this.value;
+        if (window.event.keyCode == 8) { }
+        else if (price.match(/^0$/) !== null){
+            this.value = '';
+        }
+        else if (price.match(/^\d{2}$/) !== null){
+                this.value = price + '.';
+        }"
+      />
+      <mat-error *ngIf="price.invalid">{{
+        getErrorMessage(price)
+      }}</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="max-lenght">
+      <mat-label>Description</mat-label>
+      <textarea 
+        style="min-height: 100px;"
+        matInput
+        type="search"
+        name="description"
+        #description="ngModel"
+        [(ngModel)]="servicePlate.formDataPlate.description"
+        autocomplete="off"
+        required
+        placeholder="Plate's description"
+      ></textarea>
+      <mat-error *ngIf="description.invalid">{{
+        getErrorMessage(description)
+      }}</mat-error>
+    </mat-form-field>
+  </form>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button 
+      mat-button 
+      mat-dialog-close 
+      class="form-button" 
+      #cancelButton
+      >
+        Cancel
+    </button>
+    <button 
+      mat-button 
+      [mat-dialog-close]="true" 
+      cdkFocusInitial 
+      class="form-button"
+      [disabled]="form.invalid"
+      (click)="onSubmit(form)"
+      href="#"
+      >
+        Add
+    </button>
+</mat-dialog-actions>

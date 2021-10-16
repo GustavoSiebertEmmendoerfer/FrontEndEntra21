@@ -27,21 +27,84 @@
 
 .example-container {
     position: relative;
+    width: 100%;
+    border-radius: 30px;
+    border: 3px solid black;
+    overflow: hidden;
+    background-color: #424242;
 }
 
 table {
     width: 100%;
-    min-height: 80%;
+}
+
+tr.detail-row {
+  height: 0;
+}
+
+tr.tr-body:not(.expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.tr-body:not(.expanded-row):active {
+  background: #efefef;
+}
+
+.tr-body td {
+  border-bottom-width: 0;
+}
+
+.plate-description {
+  padding: 16px
+}
+
+.plate-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+th {
+  font-size: 1.3rem;
+  max-height: 100px !important;
+  min-height: 100px !important;
+  height: 70px;
+}
+
+tr.tr-body:hover {
+  background-color: #13131310 !important;
+  cursor: pointer;
 }
 
 .plates-table {
-    width: 80% !important;
+    width: 30% !important;
     height: 80%;
-    margin-top: 50px;
-    overflow: hidden;
+    margin-top: 30px;
     align-self: center;
-    border-radius: 30px;
-    border: 3px solid black;
     display: flex;
     flex-direction: row;
+    align-self: flex-end;
+    margin-right: 100px;
+}
+
+.add-button {
+  background-color: #3f51b5;
+  height: 40px;
+  width: 40px;
+}
+
+.add-button:hover {
+  background-color: #3f51b590;
+}
+
+.add-icon {
+  color: whitesmoke;
+  padding-top: 0px !important;
+  position: absolute;
+  right: 8px;
+  bottom: 7px;
+}
+
+.delete-button:hover {
+  color: white;
+
 }

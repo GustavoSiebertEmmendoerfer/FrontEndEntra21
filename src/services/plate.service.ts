@@ -1,6 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { SortDirection } from '@angular/material/sort';
+import { Observable } from 'rxjs';
+import { AddPlateFormComponent } from '../components/add-plate-form/add-plate-form.component';
 // import { PlateRegisterFormComponent } from 'src/components/Plate-register-form/Plate-register-form.component';
 import { Plate } from 'src/models/plate';
 import { ResponseModel } from 'src/models/response';
@@ -18,27 +21,36 @@ export class PlateService {
 
   readonly PlateURL = `https://localhost:44308/api/Plates/`;
   formDataPlate:Plate = new Plate();
-  PlateList: Plate[] = [];  
+  PlateList: Plate[];  
 
-  openPlateRegister() {
-    // const dialogRef = this.dialog.open(PlateRegisterFormComponent);
-    // dialogRef.disableClose = true
+
+  openAddPlate() {
+    const dialogRef = this.dialog.open(AddPlateFormComponent);
+    dialogRef.disableClose = true
   }
 
   postPlate() {
-    return this.http.post(this.PlateURL, this.formDataPlate);
+
+    const body = {
+      Name: this.formDataPlate.name,
+      Price: this.formDataPlate.price,
+      Description: this.formDataPlate.description,
+      RestaurantEmail: JSON.parse(localStorage.getItem('userInfo')).email 
+    }
+
+    return this.http.post(this.PlateURL, body);
   }
 
   deletePlate(id: number) {
-    return this.http.delete(`${this.PlateURL}/${id}`); 
+    return this.http.delete(`${this.PlateURL}${id}`); 
   }
 
   refreshPlateList() {
     this.http
       .get<Plate[]>(this.PlateURL)
       .toPromise()
-      .then((res) => {
-          this.PlateList = res as Plate[]
+      .then((data) => {
+         this.PlateList = data as Plate[]
       });
   }
 }

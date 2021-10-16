@@ -2,25 +2,55 @@
     <div class="plates-table">
         <div class="example-container mat-elevation-z8">
             <div class="example-table-container">
-                <table mat-table [dataSource]="this.data" class="example-table" matSort matSortActive="price" matSortDisableClear matSortDirection="desc">
-                    <!-- Number Column -->
+                <table mat-table [dataSource]="this.servicePlate.PlateList" class="example-table" multiTemplateDataRows>
+                    <!-- Name Column -->
                     <ng-container matColumnDef="name">
                         <th mat-header-cell *matHeaderCellDef class="header">Name</th>
-                        <td mat-cell *matCellDef="let row" class="row   ">{{row.name}}</td>
+                        <td mat-cell *matCellDef="let row" class="row" (click)="expandedPlate = expandedPlate === row ? null : row">{{row.name}}</td>
                     </ng-container>
 
-                    <!-- Title Column -->
+                    <!-- Price Column -->
                     <ng-container matColumnDef="price">
                         <th mat-header-cell *matHeaderCellDef class="header">Price</th>
-                        <td mat-cell *matCellDef="let row" class="row">{{row.price}}</td>
+                        <td mat-cell *matCellDef="let row" class="row" (click)="expandedPlate = expandedPlate === row ? null : row">{{row.price}}</td>
                     </ng-container>
 
+                    <ng-container matColumnDef=" " *ngIf="serviceLogin.isUserRestaurant()">
+                      <th mat-header-cell *matHeaderCellDef class="header" style="text-align: center;">
+                        <button mat-fab class="add-button" (click)="servicePlate.openAddPlate()">
+                          <div class="icon-div">
+                            <mat-icon class="add-icon">add</mat-icon>
+                          </div>
+                        </button>
+                      </th>
+                      <td mat-cell *matCellDef="let row" class="row" style="text-align: center;">
+                        <button mat-icon-button color="warn" class="delete-button" (click)="onDelete(row.plateId)">
+                          <mat-icon>delete_forever</mat-icon>
+                        </button>
+                      </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="expandedDetail">
+                      <td mat-cell *matCellDef="let plate" [attr.colspan]="displayedColumns.length">
+                        <div class="plate-detail" [@detailExpand]="plate == expandedPlate ? 'expanded' : 'collapsed'">
+                          <div class="plate-description">
+                            {{plate.description}}
+                          </div>
+                        </div>
+                      </td>
+                    </ng-container>
+                    
+
                     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;" 
+                      class="tr-body"
+                      [class.expanded-row]="expandedPlate === row"
+                      
+                      >
+                    </tr>
+                    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
                 </table>
             </div>
-            <mat-paginator [length]="this.resultsLenght" [pageSize]="30" aria-label="Select page of GitHub search results">
-            </mat-paginator>
         </div>
     </div>
 </div>

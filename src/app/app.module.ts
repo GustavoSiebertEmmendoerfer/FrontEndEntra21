@@ -21,6 +21,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { RestaurantRegisterFormComponent } from '../components/restaurant-register-form/restaurant-register-form.component';
 import { LoginFormComponent } from '../components/login-form/login-form.component';
 import { ProfileRestaurantComponent } from '../views/profile-restaurant/profile-restaurant.component';
+import { AddPlateFormComponent } from '../components/add-plate-form/add-plate-form.component';
+import { DeleteConfirmFormComponent } from '../components/delete-confirm-form/delete-confirm-form.component';
 
 const globalRippleConfig: RippleGlobalOptions = {
   disabled: true,
@@ -41,6 +43,8 @@ const globalRippleConfig: RippleGlobalOptions = {
     RestaurantRegisterFormComponent,
     LoginFormComponent,
     ProfileRestaurantComponent,
+    AddPlateFormComponent,
+    DeleteConfirmFormComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,14 +1,11 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { HttpClient } from '@angular/common/http';
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort, SortDirection } from '@angular/material/sort';
-import { merge, Observable } from 'rxjs';
+import { AfterViewInit, Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
+import { DeleteConfirmFormComponent } from 'src/components/delete-confirm-form/delete-confirm-form.component';
 import { Plate } from 'src/models/plate';
+import { LoginService } from 'src/services/login.service';
 import { PlateService } from 'src/services/plate.service';
-import { of as observableOf } from 'rxjs';
-import { catchError, map, startWith, switchMap } from 'rxjs/operators';
-import { isTemplateSpan } from 'typescript';
 
 
 @Component({
@@ -24,66 +21,36 @@ import { isTemplateSpan } from 'typescript';
   ],
 })
 export class ProfileRestaurantComponent implements AfterViewInit {
-  displayedColumns: string[] = ['name', 'price']
-  exampleDatabase: ExampleHttpDatabase | null
-  data: Plate[] = []
-
-  resultsLenght = 0
-  isLoadingResults = true
-  isRateLimitReached = false
-
-  @ViewChild(MatPaginator) paginator: MatPaginator
-  @ViewChild(MatSort) sort: MatSort
+  displayedColumns: string[] = ['name', 'price', ' ']
+  expandedPlate: Plate | null
 
   constructor(
-    private http: HttpClient,
-    public servicePlate: PlateService
+    public servicePlate: PlateService,
+    public serviceLogin: LoginService,
+    private toastr: ToastrService,
+    public dialog:MatDialog,
   ) { }
 
-  ngAfterViewInit(): void {
-    this.exampleDatabase = new ExampleHttpDatabase(this.http)
-
-    this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0)
-
-    merge(this.sort.sortChange, this.paginator.page)
-      .pipe(
-        startWith({}),
-        switchMap(() => {
-          this.isLoadingResults = true
-          return this.exampleDatabase!.getPlates(
-            this.sort.active, this.sort.direction, this.paginator.pageIndex
-          ).pipe(catchError(() => observableOf(null)))
-        }),
-        map(data => {
-          this.isLoadingResults = false
-          this.isRateLimitReached = data === null
-
-          if (data === null) {
-            return []
+  onDelete(id:number) {
+    const dialogRef = this.dialog.open(DeleteConfirmFormComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == true) {
+        this.servicePlate.deletePlate(id).subscribe(
+          (res) => {
+            this.servicePlate.refreshPlateList();
+            this.toastr.error('Deleted plate succesfully', 'Plate Register');
+          },
+          (err) => {
+            console.log(err);
           }
+        );
+      }
+    })
+  }
 
-          this.resultsLenght = data.length
-          console.log(data)
-          return data
-        })
-      ).subscribe(data => this.data = data)
-      console.log(this.data)
+  ngAfterViewInit(): void {
+    this.servicePlate.refreshPlateList()
   }
 }
 
-export class PlateApi {
-  items: Plate[] = []
-  total_count: number
-}
-
-export class ExampleHttpDatabase {
-  constructor(private http: HttpClient) { }
-
-  getPlates(sort: string, order: SortDirection, page: number): Observable<PlateApi> {
-    const href = `https://localhost:44308/api/Plates/`
-    const requestUrl = `${href}?q=repo:angular/components&sort=${sort}&order=${order}&page=${page + 1}`
-
-    return this.http.get<PlateApi>(requestUrl)
-  }
-}
 
