@@ -2,20 +2,19 @@
     .icon-photo {
         margin: 10% !important;
     }
-
     .plates-layout {
         height: 60% !important;
     }
-  }
+}
 
 .banner {
     background-color: gray;
     border: 2px solid black;
-    width: 80%;
-    height: 25%;
+    width: 15%;
+    height: 100%;
     border-radius: 25px;
     margin: 15px;
-    align-self: center;
+    align-self: flex-start;
 }
 
 .layout {
@@ -26,104 +25,23 @@
     flex-direction: column;
 }
 
-.icon-photo {
-    background-color: whitesmoke;
-    border: 3px solid black ;
-    width: 150px;
-    height: 150px;
-    border-radius: 75px;
-    margin: 9%;
-    z-index: 9999;
+.example-container {
     position: relative;
 }
 
-.plates-layout {
-    background-color: crimson;
-    border: 3px solid whitesmoke;
-    align-self: center;
-    width: 80%;
-    height: 53%;
-    border-radius: 25px;
-    display: flex;
-    flex-direction: column;
+table {
+    width: 100%;
+    min-height: 80%;
+}
+
+.plates-table {
+    width: 80% !important;
+    height: 80%;
+    margin-top: 50px;
     overflow: hidden;
-}
-
-.header {
     align-self: center;
-    margin: 10px;
-    font-size: 1.3rem;
-    color: black;
-    padding: 10px;
+    border-radius: 30px;
     border: 3px solid black;
-    border-radius: 20px;
-}
-
-
-.marmita-content {
     display: flex;
     flex-direction: row;
-    padding: 30px;
-    border: 5px solid black;
-    margin-left: 30px;
-    margin-right: 30px;
-    justify-content: space-between;
-    border-radius: 70px;
 }
-
-.img {
-    height: 100%;
-    width: 100%;
-}
-
-.plate-img {
-    height: 350px;
-    width: 460px;
-    align-self: flex-start;
-    border: 3px solid black;
-    border-radius: 50px;
-    overflow: hidden;
-}
-
-.marmita-data {
-    background-color: aqua;
-    height: 350px;
-    width: 460px;
-    border: 3px solid black;
-    border-radius: 50px;
-}
-
-.buttons {
-    height: 350px;
-    width: 460px;
-    background-color: aliceblue;
-    border: 3px solid black;
-    border-radius: 50px;
-}
-
-.marmita-data {
-    position: relative;
-}
-
-.nome-marmita {
-    font-size: 1.5rem;
-    padding-left: 20px;
-    color: black;
-    top: 20px;
-    position: relative;
-}
-
-.preco-marmita {
-    font-size: 1.5rem;
-    color: black;
-    top: 20px;
-    position: relative;
-    margin-left: 160px;
-}
-
-.descricao-marmita {
-    padding: 20px;
-    top: 50px;
-    height: 200px;
-    position: relative;
-} 

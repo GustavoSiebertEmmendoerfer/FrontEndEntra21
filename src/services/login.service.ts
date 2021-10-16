@@ -56,10 +56,6 @@ export class LoginService {
   }
 
   confirmLogin() {
-    const body = {
-      Email: this.formDataLogin.email,
-      Password: this.formDataLogin.password,
-    };
-    return this.http.post<ResponseModel>(`${this.LoginURL}`, body);
+    return this.http.post<ResponseModel>(`${this.LoginURL}`, this.formDataLogin);
   }
 }
