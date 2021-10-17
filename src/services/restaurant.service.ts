@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { RestaurantRegisterFormComponent } from 'src/components/restaurant-register-form/restaurant-register-form.component';
 import { Restaurant } from 'src/models/restaurant';
+import { ResponseModel } from 'src/models/response';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class RestaurantService {
     private http:HttpClient
   ) { }
 
+  readonly URL =`https://localhost:44308/api/User/GetAllRestaurants`
   readonly RestaurantURL = `https://localhost:44308/api/Register/`;
   readonly RestaurantPhotoURL = `https://localhost:44308/api/User/`;
   formDataRestaurant:Restaurant = new Restaurant();
@@ -47,8 +49,8 @@ export class RestaurantService {
 
   refreshRestaurantList() {
     this.http
-      .get<Restaurant[]>(this.RestaurantURL+'/'+JSON.parse(localStorage.getItem('userInfo')).email)
+      .get<ResponseModel>(this.URL)
       .toPromise()
-      .then((res) => (this.RestaurantList = res as Restaurant[]));
+      .then((res) => (this.RestaurantList = res.dateSet as Array<Restaurant>));
   }
 }
