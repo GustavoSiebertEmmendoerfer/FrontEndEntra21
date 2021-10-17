@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { RestaurantRegisterFormComponent } from 'src/components/restaurant-register-form/restaurant-register-form.component';
+import { ResponseModel } from 'src/models/response';
 import { Restaurant } from 'src/models/restaurant';
 
 @Injectable({
@@ -13,7 +14,7 @@ export class RestaurantService {
     public dialog:MatDialog,
     private http:HttpClient
   ) { }
-
+  readonly URL =`https://localhost:44308/api/User/GetAllRestaurants`
   readonly RestaurantURL = `https://localhost:44308/api/Register/`;
   formDataRestaurant:Restaurant = new Restaurant();
   RestaurantList: Restaurant[] = [];  
@@ -41,8 +42,8 @@ export class RestaurantService {
 
   refreshRestaurantList() {
     this.http
-      .get<Restaurant[]>(this.RestaurantURL)
+      .get<ResponseModel>(this.URL)
       .toPromise()
-      .then((res) => (this.RestaurantList = res as Restaurant[]));
+      .then((res) => (this.RestaurantList = res.dateSet as Array<Restaurant>));
   }
 }
