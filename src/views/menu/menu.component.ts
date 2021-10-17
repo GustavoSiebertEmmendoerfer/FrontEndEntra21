@@ -13,6 +13,7 @@ export class MenuComponent implements OnInit {
   constructor(public service:RestaurantService, public router:Router) { }
 
   ngOnInit(): void {
+  
    this.PegarInfo()
   }
   PegarInfo()
@@ -20,9 +21,11 @@ export class MenuComponent implements OnInit {
     this.service.refreshRestaurantList()
     console.log(this.service.RestaurantList)
   }
+ 
   RedirecionarRestaurante(restaurant:Restaurant)
   {
-    console.log("deu bom")
-    this.router.navigate(['/menu'])
+    console.log(restaurant)
+    this.service.currentRestaurant = restaurant
+    this.router.navigate(["/restaurant",restaurant.userName])
   }
 }

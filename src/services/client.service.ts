@@ -34,7 +34,7 @@ export class ClientService {
   }
 
   postClient() {
-    return this.http.post(`${this.ClientURL}RegisterUser`, this.formDataClient);
+    return this.http.post("https://localhost:44308/api/Register/RegisterClient", this.formDataClient);
   }
 
   deleteClient(id: number) {

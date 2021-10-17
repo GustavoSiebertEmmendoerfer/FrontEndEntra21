@@ -24,6 +24,7 @@ import { ProfileRestaurantComponent } from '../views/profile-restaurant/profile-
 import { AddPlateFormComponent } from '../components/add-plate-form/add-plate-form.component';
 import { DeleteConfirmFormComponent } from '../components/delete-confirm-form/delete-confirm-form.component';
 import { GerenciamentoContaComponent } from '../components/gerenciamento-conta/gerenciamento-conta.component';
+import { RouterModule } from '@angular/router';
 
 const globalRippleConfig: RippleGlobalOptions = {
   disabled: true,

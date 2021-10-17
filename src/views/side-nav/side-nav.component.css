@@ -1,9 +1,13 @@
-h1.app-name {
+.app-name {
   margin-left: 3%;
   border-radius: 10px;
   border: 2px solid white;
   padding-right: 10px;
   padding-left: 10px;
+}
+
+.app-name:hover{
+  cursor: pointer;
 }
 
 .container {

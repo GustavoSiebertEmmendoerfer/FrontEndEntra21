@@ -6,6 +6,7 @@ import { DeleteConfirmFormComponent } from 'src/components/delete-confirm-form/d
 import { Plate } from 'src/models/plate';
 import { LoginService } from 'src/services/login.service';
 import { PlateService } from 'src/services/plate.service';
+import { RestaurantService } from 'src/services/restaurant.service';
 
 
 @Component({
@@ -25,6 +26,7 @@ export class ProfileRestaurantComponent implements AfterViewInit {
   expandedPlate: Plate | null
 
   constructor(
+    public serviceRestaurant:RestaurantService,
     public servicePlate: PlateService,
     public serviceLogin: LoginService,
     private toastr: ToastrService,

@@ -19,6 +19,7 @@ export class RestaurantService {
   formDataRestaurant:Restaurant = new Restaurant();
   RestaurantList: Restaurant[] = [];  
   confirmPassword:string = '';
+  currentRestaurant:Restaurant = new Restaurant();
 
   openRestaurantRegister() {
     const dialogRef = this.dialog.open(RestaurantRegisterFormComponent);
