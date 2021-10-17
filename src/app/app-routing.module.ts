@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { GerenciamentoContaComponent } from 'src/components/gerenciamento-conta/gerenciamento-conta.component';
 import { MenuComponent } from 'src/views/menu/menu.component';
 import { NotFoundComponent } from 'src/views/not-found/not-found.component';
 import { ProfileRestaurantComponent } from 'src/views/profile-restaurant/profile-restaurant.component';

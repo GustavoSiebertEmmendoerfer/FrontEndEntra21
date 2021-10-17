@@ -8,4 +8,5 @@ export class Restaurant {
   cnpj: string = '';
   openTime: string = '';
   closeTime: string = '';
+  photoURL: string = '';
 }

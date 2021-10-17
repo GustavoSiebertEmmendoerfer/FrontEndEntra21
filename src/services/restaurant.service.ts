@@ -15,6 +15,7 @@ export class RestaurantService {
   ) { }
 
   readonly RestaurantURL = `https://localhost:44308/api/Register/`;
+  readonly RestaurantPhotoURL = `https://localhost:44308/api/User/`;
   formDataRestaurant:Restaurant = new Restaurant();
   RestaurantList: Restaurant[] = [];  
   confirmPassword:string = '';
@@ -35,13 +36,18 @@ export class RestaurantService {
     return this.http.post(this.RestaurantURL+'RegisterRestaurant', this.formDataRestaurant);
   }
 
+  putPhotoRestaurant(photoURL:string) {
+    let user = JSON.parse(localStorage.getItem('userInfo'))
+    return this.http.put(this.RestaurantPhotoURL+user.email, photoURL);
+  }
+
   deleteRestaurant(id: number) {
     return this.http.delete(`${this.RestaurantURL}/${id}`);
   }
 
   refreshRestaurantList() {
     this.http
-      .get<Restaurant[]>(this.RestaurantURL)
+      .get<Restaurant[]>(this.RestaurantURL+'/'+JSON.parse(localStorage.getItem('userInfo')).email)
       .toPromise()
       .then((res) => (this.RestaurantList = res as Restaurant[]));
   }
