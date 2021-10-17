@@ -27,7 +27,10 @@
     <mat-menu #userInformation="matMenu">
       <button mat-menu-item class="register-menu-button user-menu" (click)="serviceLogin.onLogout()" >
         <span>Logout</span>
-    </button>
+      </button>
+      <button mat-menu-item class="register-menu-button user-menu" (click)="this.openGerenciamentoConta()">
+        <span>Account</span>
+      </button>
     </mat-menu>
   </mat-toolbar>
   <mat-sidenav-container class="sidenav-container">

@@ -22,13 +22,12 @@ export class LoginService {
   readonly LoginURL = `https://localhost:44308/api/User/Login`;
 
   formDataLogin: Login = new Login();
+  user = JSON.parse(localStorage.getItem('userInfo'))
 
   openLogin() {
     const dialogRef = this.dialog.open(LoginFormComponent);
     this.formDataLogin = new Login();
   }
-
-  user = JSON.parse(localStorage.getItem('userInfo'));
 
   isUserLogged() {
     if (
@@ -42,7 +41,7 @@ export class LoginService {
 
   isUserRestaurant() {
     if (this.isUserLogged()) {
-      if (JSON.parse(localStorage.getItem('userInfo')).roles[0] = 'Restaurant') {
+      if (JSON.parse(localStorage.getItem('userInfo')).roles[0] === 'Restaurant') {
         return true
       }
     }

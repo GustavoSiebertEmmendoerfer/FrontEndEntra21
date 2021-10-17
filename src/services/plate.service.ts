@@ -19,7 +19,7 @@ export class PlateService {
     private http:HttpClient
   ) { }
 
-  readonly PlateURL = `https://localhost:44308/api/Plates/`;
+  readonly PlateURL = `https://localhost:44308/api/Plates`;
   formDataPlate:Plate = new Plate();
   PlateList: Plate[];  
 
@@ -42,15 +42,15 @@ export class PlateService {
   }
 
   deletePlate(id: number) {
-    return this.http.delete(`${this.PlateURL}${id}`); 
+    return this.http.delete(`${this.PlateURL}/${id}`); 
   }
 
   refreshPlateList() {
     this.http
-      .get<Plate[]>(this.PlateURL)
+      .get<Plate[]>(this.PlateURL+'/'+JSON.parse(localStorage.getItem('userInfo')).email)
       .toPromise()
       .then((data) => {
-         this.PlateList = data as Plate[]
+        this.PlateList = data as Plate[]
       });
   }
 }

@@ -110,12 +110,12 @@ mat-nav-list {
 
 .register-menu-button.user-menu {
   background-color: crimson !important;
-  height: 64px;
+  height: 50px;
   color: black;
 }
 
-@media only screen and (min-width: 1900px) {
+@media only screen and (min-width: 1800px) {
   .btn.btn-register {
-    margin-left: 69%;
+    margin-left: 69% !important;
   }
 }

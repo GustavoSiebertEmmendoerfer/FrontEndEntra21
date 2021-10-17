@@ -26,6 +26,7 @@ export class LoginFormComponent implements OnInit {
   login() {
     this.serviceLogin.confirmLogin().subscribe((data:ResponseModel) => {
         localStorage.setItem('userInfo', JSON.stringify(data.dateSet))
+        this.serviceLogin.user = JSON.parse(localStorage.getItem('userInfo'))
         if (this.serviceLogin.isUserLogged()) {
           this.toastr.success('Logged Successfully', 'Login')
           this.router.navigate(["/menu"])
