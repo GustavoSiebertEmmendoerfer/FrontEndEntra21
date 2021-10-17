@@ -29,6 +29,7 @@ export class ProfileRestaurantComponent implements AfterViewInit {
   response = { dbPath: '' }
 
   constructor(
+    public serviceRestaurant:RestaurantService,
     public servicePlate: PlateService,
     public serviceLogin: LoginService,
     private toastr: ToastrService,

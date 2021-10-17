@@ -3,7 +3,9 @@
     <button class="mini-fab" matRipple mat-mini-fab (click)="sidenav.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
-    <h1 class="app-name">Gustavo Marmitas</h1>
+    <div class="app-name" [routerLink]="['/menu']">
+    <h1>Gustavo Marmitas</h1>
+  </div>
     <button *ngIf="!serviceLogin.isUserLogged()" mat-raised-button class="btn btn-register" [matMenuTriggerFor]="register">
         <span>Register</span> 
         <mat-icon>keyboard_arrow_down</mat-icon>
@@ -41,7 +43,7 @@
           mat-button 
           class="menu-button"
           *ngIf="serviceLogin.isUserRestaurant()"
-          routerLink="../profile-restaurant">
+          [routerLink]="['/restaurant', serviceLogin.user.userName]">
           <mat-icon>account_box</mat-icon>
           <span>Profile</span>
         </button>

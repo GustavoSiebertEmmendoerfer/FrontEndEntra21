@@ -8,6 +8,7 @@ import { AddPlateFormComponent } from '../components/add-plate-form/add-plate-fo
 import { Plate } from 'src/models/plate';
 import { ResponseModel } from 'src/models/response';
 import { MenuComponent } from 'src/views/menu/menu.component';
+import { RestaurantService } from './restaurant.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,7 @@ import { MenuComponent } from 'src/views/menu/menu.component';
 export class PlateService {
 
   constructor(
+    public serviceRestaurant:RestaurantService,
     public dialog:MatDialog,
     private http:HttpClient
   ) { }
@@ -46,11 +48,27 @@ export class PlateService {
   }
 
   refreshPlateList() {
+    if(JSON.parse(localStorage.getItem('userInfo')).roles === "Client")
+    {
+      this.http
+      .get<Plate[]>(this.PlateURL+'/'+this.serviceRestaurant.currentRestaurant.email)
+      .toPromise()
+      .then((data) => {
+        this.PlateList = data as Plate[]
+      });
+    }
+   if (JSON.parse(localStorage.getItem('userInfo')).roles === "Client") {
+     
+   } else {
+     
+   }
+   {
     this.http
       .get<Plate[]>(this.PlateURL+'/'+JSON.parse(localStorage.getItem('userInfo')).email)
       .toPromise()
       .then((data) => {
         this.PlateList = data as Plate[]
       });
+    }
   }
 }

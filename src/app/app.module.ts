@@ -27,6 +27,7 @@ import { UploadComponent } from '../components/upload/upload.component';
 import { RouterModule } from '@angular/router';
 
 
+
 const globalRippleConfig: RippleGlobalOptions = {
   disabled: true,
   terminateOnPointerUp: true,
