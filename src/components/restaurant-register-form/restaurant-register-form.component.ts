@@ -59,4 +59,17 @@ export class RestaurantRegisterFormComponent implements OnInit {
     form.form.reset();
     this.serviceRestaurant.formDataRestaurant = new Restaurant();
   }
+
+  response = { dbPath: '' }
+
+  uploadFinished = (event:any) => {
+    console.log(event)
+    this.response = event 
+
+    this.serviceRestaurant.formDataRestaurant.photoURL = this.response.dbPath
+  }
+
+  createImgPath = (serverPath: string) => {
+    return `https://localhost:44308/${serverPath}`
+  }
 }

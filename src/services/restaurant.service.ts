@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { RestaurantRegisterFormComponent } from 'src/components/restaurant-register-form/restaurant-register-form.component';
 import { ResponseModel } from 'src/models/response';
 import { Restaurant } from 'src/models/restaurant';
+import { ResponseModel } from 'src/models/response';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,10 @@ export class RestaurantService {
     public dialog:MatDialog,
     private http:HttpClient
   ) { }
+
   readonly URL =`https://localhost:44308/api/User/GetAllRestaurants`
   readonly RestaurantURL = `https://localhost:44308/api/Register/`;
+  readonly RestaurantPhotoURL = `https://localhost:44308/api/User/`;
   formDataRestaurant:Restaurant = new Restaurant();
   RestaurantList: Restaurant[] = [];  
   confirmPassword:string = '';
@@ -35,6 +38,11 @@ export class RestaurantService {
 
   postRestaurant() {
     return this.http.post(this.RestaurantURL+'RegisterRestaurant', this.formDataRestaurant);
+  }
+
+  putPhotoRestaurant(photoURL:string) {
+    let user = JSON.parse(localStorage.getItem('userInfo'))
+    return this.http.put(this.RestaurantPhotoURL+user.email, photoURL);
   }
 
   deleteRestaurant(id: number) {

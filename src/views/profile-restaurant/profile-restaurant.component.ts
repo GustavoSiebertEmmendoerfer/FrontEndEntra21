@@ -24,6 +24,9 @@ import { RestaurantService } from 'src/services/restaurant.service';
 export class ProfileRestaurantComponent implements AfterViewInit {
   displayedColumns: string[] = ['name', 'price', ' ']
   expandedPlate: Plate | null
+  // imageUrl:string
+  // fileToUpload:File = null
+  response = { dbPath: '' }
 
   constructor(
     public serviceRestaurant:RestaurantService,
@@ -31,6 +34,7 @@ export class ProfileRestaurantComponent implements AfterViewInit {
     public serviceLogin: LoginService,
     private toastr: ToastrService,
     public dialog:MatDialog,
+    public serviceRestaurant: RestaurantService,
   ) { }
 
   onDelete(id:number) {
@@ -52,6 +56,34 @@ export class ProfileRestaurantComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.servicePlate.refreshPlateList()
+  }
+
+  // handleFileInput(e:Event) {
+  //   let file = (e.target as HTMLInputElement).files[0];
+  //   this.fileToUpload = file
+  //   var reader = new FileReader()
+  //   reader.onload = (event:any) => {
+  //     this.imageUrl = event.target.result
+  //   }
+  //   reader.readAsDataURL(this.fileToUpload)
+  // }
+
+  uploadFinished = (event:any) => {
+    console.log(event)
+    this.response = event 
+    // debugger
+    // this.serviceRestaurant.putPhotoRestaurant(this.response.dbPath).subscribe(
+    //   (res) => {
+    //     console.log('DEU CERTO')
+    //   },
+    //   (err) => {
+    //     console.log(err)
+    //   }
+    // )
+  }
+
+  createImgPath = (serverPath: string) => {
+    return `https://localhost:44308/${serverPath}`
   }
 }
 

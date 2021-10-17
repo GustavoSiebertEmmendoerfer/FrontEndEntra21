@@ -23,8 +23,10 @@ import { LoginFormComponent } from '../components/login-form/login-form.componen
 import { ProfileRestaurantComponent } from '../views/profile-restaurant/profile-restaurant.component';
 import { AddPlateFormComponent } from '../components/add-plate-form/add-plate-form.component';
 import { DeleteConfirmFormComponent } from '../components/delete-confirm-form/delete-confirm-form.component';
-import { GerenciamentoContaComponent } from '../components/gerenciamento-conta/gerenciamento-conta.component';
+import { UploadComponent } from '../components/upload/upload.component';
 import { RouterModule } from '@angular/router';
+
+
 
 const globalRippleConfig: RippleGlobalOptions = {
   disabled: true,
@@ -47,7 +49,7 @@ const globalRippleConfig: RippleGlobalOptions = {
     ProfileRestaurantComponent,
     AddPlateFormComponent,
     DeleteConfirmFormComponent,
-    GerenciamentoContaComponent,
+    UploadComponent,
   ],
   imports: [
     BrowserModule,
