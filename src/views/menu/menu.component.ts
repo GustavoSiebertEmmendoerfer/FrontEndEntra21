@@ -24,8 +24,6 @@ export class MenuComponent implements OnInit {
  
   RedirecionarRestaurante(restaurant:Restaurant)
   {
-    console.log(restaurant)
-    this.service.currentRestaurant = restaurant
-    this.router.navigate(["/restaurant",restaurant.userName])
+    this.router.navigate(["/restaurant",restaurant.email])
   }
 }

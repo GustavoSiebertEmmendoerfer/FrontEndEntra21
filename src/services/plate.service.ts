@@ -9,6 +9,7 @@ import { Plate } from 'src/models/plate';
 import { ResponseModel } from 'src/models/response';
 import { MenuComponent } from 'src/views/menu/menu.component';
 import { RestaurantService } from './restaurant.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,8 @@ export class PlateService {
   constructor(
     public serviceRestaurant:RestaurantService,
     public dialog:MatDialog,
-    private http:HttpClient
+    private http:HttpClient,
+    private router: Router
   ) { }
 
   readonly PlateURL = `https://localhost:44308/api/Plates`;
@@ -48,27 +50,12 @@ export class PlateService {
   }
 
   refreshPlateList() {
-    if(JSON.parse(localStorage.getItem('userInfo')).roles === "Client")
-    {
-      this.http
-      .get<Plate[]>(this.PlateURL+'/'+this.serviceRestaurant.currentRestaurant.email)
-      .toPromise()
-      .then((data) => {
-        this.PlateList = data as Plate[]
-      });
-    }
-   if (JSON.parse(localStorage.getItem('userInfo')).roles === "Client") {
-     
-   } else {
-     
-   }
-   {
+    let email = this.router.url.substring(12)
     this.http
-      .get<Plate[]>(this.PlateURL+'/'+JSON.parse(localStorage.getItem('userInfo')).email)
-      .toPromise()
-      .then((data) => {
-        this.PlateList = data as Plate[]
-      });
-    }
+    .get<Plate[]>(this.PlateURL+'/'+email)
+    .toPromise()
+    .then((data) => {
+      this.PlateList = data as Plate[]
+    });
   }
 }

@@ -25,6 +25,7 @@ import { AddPlateFormComponent } from '../components/add-plate-form/add-plate-fo
 import { DeleteConfirmFormComponent } from '../components/delete-confirm-form/delete-confirm-form.component';
 import { UploadComponent } from '../components/upload/upload.component';
 import { RouterModule } from '@angular/router';
+import { OrderItemFormComponent } from '../components/order-item-form/order-item-form.component';
 
 
 
@@ -50,6 +51,7 @@ const globalRippleConfig: RippleGlobalOptions = {
     AddPlateFormComponent,
     DeleteConfirmFormComponent,
     UploadComponent,
+    OrderItemFormComponent,
   ],
   imports: [
     BrowserModule,

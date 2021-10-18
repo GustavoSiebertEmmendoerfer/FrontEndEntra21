@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { RestaurantRegisterFormComponent } from 'src/components/restaurant-register-form/restaurant-register-form.component';
-import { ResponseModel } from 'src/models/response';
 import { Restaurant } from 'src/models/restaurant';
 import { ResponseModel } from 'src/models/response';
 
