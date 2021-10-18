@@ -18,7 +18,6 @@ export class UploadComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
   public uploadFile = (files) => {
     if (files.lenght === 0)
       return 

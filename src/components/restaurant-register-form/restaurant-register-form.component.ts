@@ -8,18 +8,16 @@ import { RestaurantService } from 'src/services/restaurant.service';
 @Component({
   selector: 'app-restaurant-register-form',
   templateUrl: './restaurant-register-form.component.html',
-  styleUrls: ['./restaurant-register-form.component.css']
+  styleUrls: ['./restaurant-register-form.component.css'],
 })
 export class RestaurantRegisterFormComponent implements OnInit {
-
   constructor(
-    public serviceRestaurant: RestaurantService, 
+    public serviceRestaurant: RestaurantService,
     public serviceLogin: LoginService,
     private toastr: ToastrService
-  ) { }
+  ) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   getErrorMessage(input: NgModel) {
     if (input.hasError('required')) {
@@ -37,7 +35,7 @@ export class RestaurantRegisterFormComponent implements OnInit {
     } else {
       this.toastr.error('Your passwords do not match', 'Restaurant Register');
       this.serviceRestaurant.openRestaurantRegister();
-    } 
+    }
   }
 
   insertRestaurant(form: NgForm) {
@@ -60,16 +58,16 @@ export class RestaurantRegisterFormComponent implements OnInit {
     this.serviceRestaurant.formDataRestaurant = new Restaurant();
   }
 
-  response = { dbPath: '' }
+  response = { dbPath: '' };
 
-  uploadFinished = (event:any) => {
-    console.log(event)
-    this.response = event 
+  uploadFinished = (event: any) => {
+    console.log(event);
+    this.response = event;
 
-    this.serviceRestaurant.formDataRestaurant.photoURL = this.response.dbPath
-  }
+    this.serviceRestaurant.formDataRestaurant.photoURL = this.response.dbPath;
+  };
 
   createImgPath = (serverPath: string) => {
-    return `https://localhost:44308/${serverPath}`
-  }
+    return `https://localhost:44308/${serverPath}`;
+  };
 }

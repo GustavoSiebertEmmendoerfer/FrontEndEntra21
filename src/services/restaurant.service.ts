@@ -15,13 +15,13 @@ export class RestaurantService {
     private http:HttpClient
   ) { }
 
-  readonly URL =`https://localhost:44308/api/User/GetAllRestaurants`
+  readonly URL =`https://localhost:44308/api/User/`
   readonly RestaurantURL = `https://localhost:44308/api/Register/`;
   readonly RestaurantPhotoURL = `https://localhost:44308/api/User/`;
   formDataRestaurant:Restaurant = new Restaurant();
   RestaurantList: Restaurant[] = [];  
   confirmPassword:string = '';
-  currentRestaurant:Restaurant = new Restaurant();
+  restaurant:Restaurant
 
   openRestaurantRegister() {
     const dialogRef = this.dialog.open(RestaurantRegisterFormComponent);
@@ -48,10 +48,17 @@ export class RestaurantService {
     return this.http.delete(`${this.RestaurantURL}/${id}`);
   }
 
+  getRestaurant(email:string) {
+    this.http
+      .get<ResponseModel>(this.URL+'Restaurant'+'/'+email)
+      .toPromise()
+      .then((res) => this.restaurant = res.dateSet as Restaurant)
+  }
+
   refreshRestaurantList() {
     this.http
-      .get<ResponseModel>(this.URL)
+      .get<ResponseModel>(this.URL+'GetAllRestaurants')
       .toPromise()
-      .then((res) => (this.RestaurantList = res.dateSet as Array<Restaurant>));
+      .then((res) => this.RestaurantList = res.dateSet as Restaurant[]);
   }
 }

@@ -22,7 +22,6 @@
     height: 100%;
     position: fixed;
     display: flex;
-    flex-direction: column;
 }
 
 .example-container {
@@ -79,11 +78,9 @@ tr.tr-body:hover {
     width: 30% !important;
     height: 80%;
     margin-top: 30px;
-    align-self: center;
     display: flex;
     flex-direction: row;
-    align-self: flex-end;
-    margin-right: 100px;
+    margin-left: 250px;
 }
 
 .add-button {
@@ -124,5 +121,18 @@ tr.tr-body:hover {
 
 .delete-button:hover {
   color: white;
+}
 
+.container {
+  margin-left: 250px;
+  margin-top: 30px;
+  width: 35%;
+}
+.teste{
+  height: 80% !important;
+  background: crimson;
+  text-overflow: ellipsis;
+  word-break: break-word;
+  overflow: hidden;
+  border-radius: 50px;
 }

@@ -1,4 +1,20 @@
 <div class="layout">
+  <div class ="container">
+    <mat-card class ="teste">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{serviceRestaurant.restaurant.userName}}</mat-card-title>
+        <mat-card-subtitle></mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content class = "text">
+        <p>
+          {{serviceRestaurant.restaurant.email}}
+        </p>
+        <img [src]="createImgPath(serviceRestaurant.restaurant.photoURL)" style="width: 200px; height: 200px;">
+        <app-upload (uploadFinished)="uploadFinished($event)"></app-upload>
+      </mat-card-content>
+    </mat-card>
+  </div>
     <div class="plates-table">
         <div class="example-container mat-elevation-z8">
             <div class="example-table-container">

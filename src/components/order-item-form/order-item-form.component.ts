@@ -9,7 +9,7 @@ import { OrderService } from 'src/services/order.service';
   styleUrls: ['./order-item-form.component.css']
 })
 export class OrderItemFormComponent implements OnInit {
-  value = 0;
+  value = 1;
 
   constructor(
     public serviceOrder: OrderService,
@@ -22,7 +22,7 @@ export class OrderItemFormComponent implements OnInit {
   createOrder() {
     this.serviceOrder.postOrder().subscribe(
       (res) => {
-        this.toastr.success('Submitted succesfully', 'Restaurant Register');
+        
       },
       (err) => {
         console.log(err)

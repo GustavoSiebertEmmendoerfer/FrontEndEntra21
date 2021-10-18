@@ -24,7 +24,6 @@ import { ProfileRestaurantComponent } from '../views/profile-restaurant/profile-
 import { AddPlateFormComponent } from '../components/add-plate-form/add-plate-form.component';
 import { DeleteConfirmFormComponent } from '../components/delete-confirm-form/delete-confirm-form.component';
 import { UploadComponent } from '../components/upload/upload.component';
-import { RouterModule } from '@angular/router';
 import { OrderItemFormComponent } from '../components/order-item-form/order-item-form.component';
 
 

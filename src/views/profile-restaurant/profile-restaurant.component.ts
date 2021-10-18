@@ -1,9 +1,11 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { DeleteConfirmFormComponent } from 'src/components/delete-confirm-form/delete-confirm-form.component';
 import { Plate } from 'src/models/plate';
+import { Restaurant } from 'src/models/restaurant';
 import { LoginService } from 'src/services/login.service';
 import { OrderService } from 'src/services/order.service';
 import { PlateService } from 'src/services/plate.service';
@@ -22,21 +24,21 @@ import { RestaurantService } from 'src/services/restaurant.service';
     ]),
   ],
 })
-export class ProfileRestaurantComponent implements AfterViewInit {
-  displayedColumns: string[] = ['name', 'price', ' ']
-  expandedPlate: Plate | null
-  // imageUrl:string
-  // fileToUpload:File = null
-  response = { dbPath: '' }
-
+export class ProfileRestaurantComponent implements OnInit {
+  
   constructor(
     public servicePlate: PlateService,
     public serviceLogin: LoginService,
     private toastr: ToastrService,
     public dialog:MatDialog,
     public serviceRestaurant: RestaurantService,
-    public serviceOrder: OrderService
-  ) { }
+    public serviceOrder: OrderService,
+    private router: Router
+    ) { }
+
+  displayedColumns: string[] = ['name', 'price', ' ']
+  expandedPlate: Plate | null
+  response = { dbPath: '' }
 
   onDelete(id:number) {
     const dialogRef = this.dialog.open(DeleteConfirmFormComponent);
@@ -54,9 +56,10 @@ export class ProfileRestaurantComponent implements AfterViewInit {
       }
     })
   }
-
-  ngAfterViewInit(): void {
+  
+  ngOnInit(): void {
     this.servicePlate.refreshPlateList()
+    this.serviceRestaurant.getRestaurant(this.router.url.substring(12))    
   }
 
   uploadFinished = (event:any) => {
