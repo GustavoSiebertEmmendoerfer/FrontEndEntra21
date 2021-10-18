@@ -39,11 +39,21 @@ export class LoginService {
     return true;
   }
 
+  isUserCreator()
+  {
+    if(this.user.email === this.router.url.substring(12))
+    {
+      return true
+    }
+    return false
+  }
+
   isUserRestaurant() {
     if (this.isUserLogged()) {
-      if (JSON.parse(localStorage.getItem('userInfo')).roles[0] === 'Restaurant') {
-        return true
-      }
+      if (JSON.parse(localStorage.getItem('userInfo')).roles[0] === 'Restaurant') 
+      {
+       return true
+      } 
     }
     return false
   }
