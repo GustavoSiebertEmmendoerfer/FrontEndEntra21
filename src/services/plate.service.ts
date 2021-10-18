@@ -52,10 +52,10 @@ export class PlateService {
   refreshPlateList() {
     let email = this.router.url.substring(12)
     this.http
-    .get<Plate[]>(this.PlateURL+'/'+email)
+    .get<ResponseModel>(this.PlateURL+'/PlatesByRestaurant/'+email)
     .toPromise()
     .then((data) => {
-      this.PlateList = data as Plate[]
+      this.PlateList = data.dateSet as Plate[]
     });
   }
 }

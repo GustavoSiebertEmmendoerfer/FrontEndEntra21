@@ -16,7 +16,7 @@ export class ClientService {
     private http:HttpClient
   ) { }
 
-  readonly ClientURL = `https://localhost:44308/api/Register/`;
+  readonly ClientURL = `https://localhost:44308/api/User`;
   formDataClient:Client = new Client();
   clientList: Client[] = [];  
   confirmPassword:string = '';
@@ -34,7 +34,7 @@ export class ClientService {
   }
 
   postClient() {
-    return this.http.post("https://localhost:44308/api/Register/RegisterClient", this.formDataClient);
+    return this.http.post(`${this.ClientURL}/RegisterClient`, this.formDataClient);
   }
 
   deleteClient(id: number) {

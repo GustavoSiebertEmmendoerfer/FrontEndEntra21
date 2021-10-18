@@ -10,8 +10,8 @@
         <p>
           {{serviceRestaurant.restaurant.email}}
         </p>
-        <img [src]="createImgPath(serviceRestaurant.restaurant.photoURL)" style="width: 200px; height: 200px;">
-        <app-upload (uploadFinished)="uploadFinished($event)"></app-upload>
+        <!-- <img [src]="createImgPath(serviceRestaurant.restaurant.photoURL)" style="width: 200px; height: 200px;">
+        <app-upload (uploadFinished)="uploadFinished($event)"></app-upload> -->
       </mat-card-content>
     </mat-card>
   </div>
@@ -33,7 +33,7 @@
 
                     <ng-container matColumnDef=" " >
                       <th mat-header-cell *matHeaderCellDef class="header" style="text-align: center;">
-                        <button mat-fab class="add-button" (click)="servicePlate.openAddPlate()" *ngIf="serviceLogin.isUserRestaurant()">
+                        <button mat-fab class="add-button" (click)="servicePlate.openAddPlate()" *ngIf="serviceLogin.isUserCreator()">
                           <mat-icon class="add-icon">add</mat-icon>
                         </button>
                       </th>
@@ -41,7 +41,7 @@
                         <button mat-icon-button color="warn" class="delete-button" (click)="onDelete(row.plateId)" *ngIf="serviceLogin.isUserRestaurant()">
                           <mat-icon>delete_forever</mat-icon>
                         </button>
-                        <button mat-fab class="add-order-button" *ngIf="!serviceLogin.isUserRestaurant()" (click)="serviceOrder.openOrderItemModal(row)">
+                        <button mat-fab class="add-order-button" *ngIf="!serviceLogin.isUserCreator()" (click)="serviceOrder.openOrderItemModal(row)">
                           <mat-icon class="add-order-icon">add</mat-icon>
                         </button>
                       </td>

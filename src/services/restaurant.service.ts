@@ -15,9 +15,9 @@ export class RestaurantService {
     private http:HttpClient
   ) { }
 
-  readonly URL =`https://localhost:44308/api/User/`
-  readonly RestaurantURL = `https://localhost:44308/api/Register/`;
-  readonly RestaurantPhotoURL = `https://localhost:44308/api/User/`;
+
+  readonly RestaurantURL = `https://localhost:44308/api/User/`;
+
   formDataRestaurant:Restaurant = new Restaurant();
   RestaurantList: Restaurant[] = [];  
   confirmPassword:string = '';
@@ -41,7 +41,7 @@ export class RestaurantService {
 
   putPhotoRestaurant(photoURL:string) {
     let user = JSON.parse(localStorage.getItem('userInfo'))
-    return this.http.put(this.RestaurantPhotoURL+user.email, photoURL);
+    return this.http.put(this.RestaurantURL+user.email, photoURL);
   }
 
   deleteRestaurant(id: number) {
@@ -50,14 +50,14 @@ export class RestaurantService {
 
   getRestaurant(email:string) {
     this.http
-      .get<ResponseModel>(this.URL+'Restaurant'+'/'+email)
+      .get<ResponseModel>(this.RestaurantURL+'Restaurant'+'/'+email)
       .toPromise()
       .then((res) => this.restaurant = res.dateSet as Restaurant)
   }
 
   refreshRestaurantList() {
     this.http
-      .get<ResponseModel>(this.URL+'GetAllRestaurants')
+      .get<ResponseModel>(this.RestaurantURL+'GetAllRestaurants')
       .toPromise()
       .then((res) => this.RestaurantList = res.dateSet as Restaurant[]);
   }

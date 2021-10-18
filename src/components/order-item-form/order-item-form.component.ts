@@ -10,6 +10,7 @@ import { OrderService } from 'src/services/order.service';
 })
 export class OrderItemFormComponent implements OnInit {
   value = 1;
+  
 
   constructor(
     public serviceOrder: OrderService,
@@ -20,14 +21,9 @@ export class OrderItemFormComponent implements OnInit {
   }
 
   createOrder() {
-    this.serviceOrder.postOrder().subscribe(
-      (res) => {
-        
-      },
-      (err) => {
-        console.log(err)
-      }
-    )
+    this.serviceOrder.postOrder()
+    this.serviceOrder.ListOrder()
+    this.serviceOrder.postOrderItem(this.value)
   }
 
 }
