@@ -42,7 +42,12 @@ export class OrderService {
       RestaurantEmail: this.router.url.substring(12)
     }
 
-    return this.http.post<ResponseModel>(this.OrdersURL, body).subscribe(x=>this.OrderID = x.dateSet);
+    return this.http.post<ResponseModel>(this.OrdersURL, body).subscribe(x=>{
+      if(x.dateSet != true)
+      {
+        this.OrderID = x.dateSet
+      }
+    });
   }
     ListOrder() {
     this.http
@@ -54,7 +59,7 @@ export class OrderService {
 
     const body = {
       quantity : i,
-      orderId : 
+      orderId : 16,
       plateId: this.selectedPlate.plateId
     }
 
