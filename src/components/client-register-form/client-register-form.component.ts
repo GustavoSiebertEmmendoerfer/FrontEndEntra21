@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm, NgModel } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { Client } from 'src/models/client';
+import { Client } from 'src/models/enums/client';
 import { ClientService } from 'src/services/client.service';
 import { LoginService } from 'src/services/login.service';
 

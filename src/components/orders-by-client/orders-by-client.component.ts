@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/services/login.service';
+import { OrderService } from 'src/services/order.service';
 
 @Component({
   selector: 'app-orders-by-client',
@@ -8,9 +9,16 @@ import { LoginService } from 'src/services/login.service';
 })
 export class OrdersByClientComponent implements OnInit {
 
-  constructor(public serviceLogin:LoginService) { }
+  constructor(public serviceOrder:OrderService) { }
 
   ngOnInit(): void {
+    this.Orders()
+  }
+
+  Orders()
+  {
+    this.serviceOrder.ListOrder()
+    this.serviceOrder.OrderList
   }
 
 }

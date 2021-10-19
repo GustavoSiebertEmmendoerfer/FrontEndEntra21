@@ -79,9 +79,6 @@ export class ProfileRestaurantComponent implements OnInit {
     )
   }
 
-  createImgPath = (serverPath: string) => {
-    return `https://localhost:44308/${serverPath}`
-  }
 }
 
 

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ClientRegisterFormComponent } from 'src/components/client-register-form/client-register-form.component';
-import { Client } from 'src/models/client';
+import { Client } from 'src/models/enums/client';
 import { ResponseModel } from 'src/models/response';
 import { MenuComponent } from 'src/views/menu/menu.component';
 

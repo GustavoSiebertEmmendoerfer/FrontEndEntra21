@@ -23,6 +23,8 @@ export class OrderItemFormComponent implements OnInit {
 
   createOrder() {
     this.serviceOrder.postOrder()
+    this.serviceOrder.ListOrder()
+    this.serviceOrder.postOrderItem(this.value)
   }
 
 }

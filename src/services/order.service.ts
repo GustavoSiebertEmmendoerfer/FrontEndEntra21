@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, JsonpClientBackend } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -25,8 +25,8 @@ export class OrderService {
   readonly OrdersURL = `https://localhost:44308/api/Orders`
   readonly OrdersItemURL = `https://localhost:44308/api/OrderItem`
   selectedPlate: Plate
-  OrderList : OrderResponse[] = []
-  OrderID : OrderResponse
+  OrderList : OrderResponse 
+  id : string = JSON.parse(localStorage.getItem("userInfo")).userId
 
   openOrderItemModal(selectedPlate: Plate) {
     const dialogRef = this.dialogRef.open(OrderItemFormComponent)
@@ -46,20 +46,20 @@ export class OrderService {
 
   ListOrder() {
     this.http
-      .get<ResponseModel>(`https://localhost:44308/api/Orders/userOrders/${this.serviceLogin.user.email}`)
+      .get<OrderResponse>(`https://localhost:44308/api/Orders/userOrder/${this.serviceLogin.user.userId}`)
       .toPromise()
-      .then((res) => this.OrderList = res.dateSet as OrderResponse[]);
+      .then((res) => this.OrderList = res as OrderResponse);
   }
 
   postOrderItem(i:number) {
-
+    debugger
     const body = {
       quantity : i,
-      orderId : 16,
+      orderId : this.OrderList.maiorValor,
       plateId: this.selectedPlate.plateId
     }
 
-    return this.http.post<ResponseModel>(this.OrdersItemURL, body).subscribe(x=>console.log(x.dateSet));
+    return this.http.post<ResponseModel>(this.OrdersItemURL, body).subscribe(x=>console.log(x.responseCode));
   }
 
 }
