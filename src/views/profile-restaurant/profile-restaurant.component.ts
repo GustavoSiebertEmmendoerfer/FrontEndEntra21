@@ -64,7 +64,19 @@ export class ProfileRestaurantComponent implements OnInit {
 
   uploadFinished = (event:any) => {
     console.log(event)
-    this.response = event 
+    this.response = event
+    let restaurant = JSON.parse(localStorage.getItem('userInfo'))    
+    const body = {
+      Email: restaurant.email,
+      UserName: restaurant.userName,
+      PhotoURL: this.response.dbPath,
+    }
+    
+    this.serviceRestaurant.putRestaurant(body).subscribe(
+      (res) => {
+        console.log('aaaaa')
+      }
+    )
   }
 
   createImgPath = (serverPath: string) => {

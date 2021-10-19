@@ -32,6 +32,7 @@ export class RestaurantRegisterFormComponent implements OnInit {
   onSubmit(form: NgForm) {
     if (this.serviceRestaurant.confirmRestaurantPassword()) {
       this.insertRestaurant(form);
+      
     } else {
       this.toastr.error('Your passwords do not match', 'Restaurant Register');
       this.serviceRestaurant.openRestaurantRegister();
@@ -45,6 +46,7 @@ export class RestaurantRegisterFormComponent implements OnInit {
         this.serviceRestaurant.confirmPassword = '';
         this.toastr.success('Submitted succesfully', 'Restaurant Register');
         this.serviceLogin.openLogin();
+        this.serviceRestaurant.refreshRestaurantList()
       },
       (err) => {
         console.log(err);

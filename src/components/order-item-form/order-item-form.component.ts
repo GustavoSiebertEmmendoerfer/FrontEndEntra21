@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { OrderService } from 'src/services/order.service';
 
@@ -22,8 +23,6 @@ export class OrderItemFormComponent implements OnInit {
 
   createOrder() {
     this.serviceOrder.postOrder()
-    this.serviceOrder.ListOrder()
-    this.serviceOrder.postOrderItem(this.value)
   }
 
 }

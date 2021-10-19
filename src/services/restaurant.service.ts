@@ -35,6 +35,10 @@ export class RestaurantService {
     return false;
   }
 
+  putRestaurant(body) {
+    return this.http.put(this.RestaurantURL, body)
+  }
+
   postRestaurant() {
     return this.http.post(this.RestaurantURL+'RegisterRestaurant', this.formDataRestaurant);
   }

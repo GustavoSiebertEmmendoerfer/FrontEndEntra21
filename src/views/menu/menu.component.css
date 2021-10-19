@@ -6,6 +6,7 @@
 }
 .container {
     margin-left: 350px;
+    margin-right: 350px;
     margin-top: 50px;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(305px, 1fr));

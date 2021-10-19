@@ -32,7 +32,6 @@ export class OrderService {
     const dialogRef = this.dialogRef.open(OrderItemFormComponent)
     dialogRef.disableClose = true
     this.selectedPlate = selectedPlate
-
   }
 
   postOrder() {
@@ -42,19 +41,16 @@ export class OrderService {
       RestaurantEmail: this.router.url.substring(12)
     }
 
-    return this.http.post<ResponseModel>(this.OrdersURL, body).subscribe(x=>{
-      if(x.dateSet != true)
-      {
-        this.OrderID = x.dateSet
-      }
-    });
+    return this.http.post<ResponseModel>(this.OrdersURL, body).subscribe();
   }
-    ListOrder() {
+
+  ListOrder() {
     this.http
       .get<ResponseModel>(`https://localhost:44308/api/Orders/userOrders/${this.serviceLogin.user.email}`)
       .toPromise()
       .then((res) => this.OrderList = res.dateSet as OrderResponse[]);
   }
+
   postOrderItem(i:number) {
 
     const body = {
