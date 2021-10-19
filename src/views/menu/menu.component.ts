@@ -9,7 +9,7 @@ import { RestaurantService } from 'src/services/restaurant.service';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-
+  response = { dbPath: '' }
   constructor(public service:RestaurantService, public router:Router) { }
 
   ngOnInit(): void {
@@ -25,5 +25,13 @@ export class MenuComponent implements OnInit {
   RedirecionarRestaurante(restaurant:Restaurant)
   {
     this.router.navigate(["/restaurant",restaurant.email])
+  }
+  uploadFinished = (event:any) => {
+    console.log(event)
+    this.response = event 
+  }
+
+  createImgPath = (serverPath: string) => {
+    return `https://localhost:44308/${serverPath}`
   }
 }

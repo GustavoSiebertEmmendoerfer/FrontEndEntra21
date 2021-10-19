@@ -2,6 +2,7 @@
     width: 100%;
     height: 100%;
     display: flex;
+    
     flex-direction:column;
 }
 .container {
@@ -13,6 +14,7 @@
     grid-gap: 10px;
 }
 .teste{
+  width: 250px;
    background: crimson;
    text-overflow: ellipsis;
    word-break: break-word;
@@ -20,7 +22,7 @@
   }
 
   .teste:hover{
-    background-color:grey;
+    background-color:#a70b2a;
     cursor: pointer;
   }
   .teste:active{

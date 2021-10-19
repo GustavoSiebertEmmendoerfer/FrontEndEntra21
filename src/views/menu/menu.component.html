@@ -9,8 +9,9 @@
       </mat-card-header>
       <mat-card-content class = "text">
         <p>
-          {{item.email}}
+              address:{{item.address}}
         </p>
+        <img [src]="createImgPath(item.photoURL)" style="width: 250px; height: 250px;">
       </mat-card-content>
     </mat-card>
   </div>

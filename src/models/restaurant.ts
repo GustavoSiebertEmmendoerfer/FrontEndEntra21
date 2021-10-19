@@ -9,4 +9,5 @@ export class Restaurant {
   openTime: string = '';
   closeTime: string = '';
   photoURL: string = '';
+  description:string = '';
 }

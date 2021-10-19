@@ -7,6 +7,7 @@ import { Order } from 'src/models/order';
 import { OrderResponse } from 'src/models/orderResponse';
 import { Plate } from 'src/models/plate';
 import { ResponseModel } from 'src/models/response';
+import { userOrders } from 'src/models/UserOrders';
 import { LoginService } from './login.service';
 
 @Injectable({
@@ -24,9 +25,10 @@ export class OrderService {
 
   readonly OrdersURL = `https://localhost:44308/api/Orders`
   readonly OrdersItemURL = `https://localhost:44308/api/OrderItem`
-  selectedPlate: Plate
-  OrderList : OrderResponse 
-  id : string = JSON.parse(localStorage.getItem("userInfo")).userId
+  selectedPlate: Plate;
+  OrderClient : userOrders[] = [];
+  lastOrder : OrderResponse;
+  id : string = JSON.parse(localStorage.getItem("userInfo")).userId;
 
   openOrderItemModal(selectedPlate: Plate) {
     const dialogRef = this.dialogRef.open(OrderItemFormComponent)
@@ -44,18 +46,24 @@ export class OrderService {
     return this.http.post<ResponseModel>(this.OrdersURL, body).subscribe();
   }
 
-  ListOrder() {
+  LastOrder() {
     this.http
       .get<OrderResponse>(`https://localhost:44308/api/Orders/userOrder/${this.serviceLogin.user.userId}`)
       .toPromise()
-      .then((res) => this.OrderList = res as OrderResponse);
+      .then((res) => this.lastOrder = res as OrderResponse);
+  }
+  getAllOrders()
+  {
+    this.http.get<userOrders[]>(`https://localhost:44308/api/Orders/userOrders/user/${this.serviceLogin.user.userId}`)
+    .toPromise()
+    .then((res) => this.OrderClient= res as userOrders[]);
   }
 
   postOrderItem(i:number) {
     debugger
     const body = {
       quantity : i,
-      orderId : this.OrderList.maiorValor,
+      orderId : this.lastOrder.maiorValor,
       plateId: this.selectedPlate.plateId
     }
 

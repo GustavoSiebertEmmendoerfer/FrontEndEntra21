@@ -23,7 +23,7 @@ export class OrderItemFormComponent implements OnInit {
 
   createOrder() {
     this.serviceOrder.postOrder()
-    this.serviceOrder.ListOrder()
+    this.serviceOrder.LastOrder()
     this.serviceOrder.postOrderItem(this.value)
   }
 

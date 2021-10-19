@@ -62,6 +62,7 @@ export class ProfileRestaurantComponent implements OnInit {
     this.serviceRestaurant.getRestaurant(this.router.url.substring(12))    
   }
 
+
   uploadFinished = (event:any) => {
     console.log(event)
     this.response = event
