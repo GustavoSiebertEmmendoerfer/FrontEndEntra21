@@ -71,9 +71,9 @@
               #cnpj="ngModel"
               [(ngModel)]="serviceRestaurant.formDataRestaurant.cnpj"
               required
-              minlength="14"
-              maxlength="14"
-              placeholder="___.___.___-__"
+              minlength="18"
+              maxlength="18"
+              placeholder="__.___.___/____-__"
               autocomplete="off"
               onkeyup="
               var cnpj = this.value;
@@ -83,18 +83,91 @@
               onkeydown="
               var cnpj = this.value;
               if (window.event.keyCode == 8) { }
-              else if (cnpj.match(/^\d{3}$/) !== null){
+              else if (cnpj.match(/^\d{2}$/) !== null){
                   this.value = cnpj + '.';
               }
-              else if (cnpj.match(/^\d{3}\.\d{3}$/) !== null){
+              else if (cnpj.match(/^\d{2}\.\d{3}$/) !== null){
                   this.value = cnpj + '.';
               }
-              else if (cnpj.match(/^\d{3}\.\d{3}\.\d{3}$/) !== null) {
+              else if (cnpj.match(/^\d{2}\.\d{3}\.\d{3}$/) !== null) {
+                  this.value = cnpj + '/';
+              }
+              else if (cnpj.match(/^\d{2}\.\d{3}\.\d{3}\/\d{4}$/) !== null) {
                   this.value = cnpj + '-';
               }"
             />
             <mat-error *ngIf="cnpj.invalid">{{
               getErrorMessage(cnpj)
+            }}</mat-error>
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+    <table class="max-lenght" [cellSpacing]="15">
+      <tr>
+        <td>
+          <mat-form-field appearance="outline" class="max-lenght">
+            <mat-label>Open Time</mat-label>
+            <input
+              matInput
+              type="search"
+              name="openTime"
+              #openTime="ngModel"
+              [(ngModel)]="serviceRestaurant.formDataRestaurant.openTime"
+              maxlength="5"
+              minlength="5"
+              placeholder="00:00"
+              autocomplete="off"
+              onkeyup="
+                var openTime = this.value;
+                if (openTime.match(/^[A-Z]|[a-z]$/) !== null){
+                this.value = '';
+                }"
+              onkeydown="
+                var openTime = this.value;
+                if (window.event.keyCode == 8) { }
+                else if (openTime.match(/^[A-Z]|[a-z]$/) !== null){
+                  this.value = ' ';
+                }
+                else if (openTime.match(/^\d{2}$/) !== null){
+                  this.value = openTime + ':';
+                }"
+            />
+            <mat-error *ngIf="openTime.invalid">{{
+              getErrorMessage(openTime)
+            }}</mat-error>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field appearance="outline" class="max-lenght">
+            <mat-label>Close Time</mat-label>
+            <input
+              matInput
+              type="search"
+              name="closeTime"
+              #closeTime="ngModel"
+              [(ngModel)]="serviceRestaurant.formDataRestaurant.closeTime"
+              maxlength="5"
+              minlength="5"
+              placeholder="00:00"
+              autocomplete="off"
+              onkeyup="
+                var closeTime = this.value;
+                if (closeTime.match(/^[A-Z]|[a-z]$/) !== null){
+                this.value = '';
+                }"
+              onkeydown="
+                var closeTime = this.value;
+                if (window.event.keyCode == 8) { }
+                else if (closeTime.match(/^[A-Z]|[a-z]$/) !== null){
+                  this.value = ' ';
+                }
+                else if (closeTime.match(/^\d{2}$/) !== null){
+                  this.value = closeTime + ':';
+                }"
+            />
+            <mat-error *ngIf="closeTime.invalid">{{
+              getErrorMessage(closeTime)
             }}</mat-error>
           </mat-form-field>
         </td>
@@ -179,7 +252,7 @@
         </td>
       </tr>
     </table>
-    <!-- <app-upload (onUploadFinished)="uploadFinished($event)"></app-upload> -->
+    <app-upload (onUploadFinished)="uploadFinished($event)"></app-upload>
   </form>
   </mat-dialog-content>
   <mat-dialog-actions align="end">

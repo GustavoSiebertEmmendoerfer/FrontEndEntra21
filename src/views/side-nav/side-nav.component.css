@@ -123,3 +123,7 @@ mat-nav-list {
     margin-left: 69% !important;
   }
 }
+
+.content {
+  overflow: auto;
+}

@@ -1,19 +1,25 @@
-
-<div class = "boss"> 
-  <div class ="container">
-    <mat-card class ="teste" (click)="RedirecionarRestaurante(item)" *ngFor="let item of service.RestaurantList" >
-      <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>{{item.userName}}</mat-card-title>
+<div class="boss">
+  <div class="container">
+    <mat-card
+      class="teste"
+      (click)="RedirecionarRestaurante(item)"
+      *ngFor="let item of service.RestaurantList"
+    >
+      <mat-card-header style="margin: 0px">
+        <mat-card-title class="title">
+          <span class="title-text">
+            {{ item.userName }}
+          </span>
+          <p>
+            {{ item.address }}
+          </p>
+          </mat-card-title
+        >
         <mat-card-subtitle></mat-card-subtitle>
       </mat-card-header>
-      <mat-card-content class = "text">
-        <p>
-              address:{{item.address}}
-        </p>
-        <img [src]="createImgPath(item.photoURL)" style="width: 250px; height: 250px;">
+      <mat-card-content class="text">
+        <img [src]="createImgPath(item.photoURL)" />
       </mat-card-content>
     </mat-card>
   </div>
 </div>
-  

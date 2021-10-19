@@ -1,114 +1,136 @@
 <div class="layout">
-  <div class ="container">
-    <mat-card class ="teste">
-      <mat-card-header class="header"> 
-        <mat-card-title class = "text">{{serviceRestaurant.restaurant.userName}}</mat-card-title>
-        <mat-card-subtitle></mat-card-subtitle>
+  <div class="container">
+    <mat-card class="teste">
+      <mat-card-header class="header">
+        <mat-card-title class="text"
+          >Restaurante
+          {{ serviceRestaurant.restaurant.userName }}</mat-card-title
+        >
       </mat-card-header>
-      <br>
-      <br>
-      <br>
-      <br>
 
-      <div *ngIf="serviceLogin.isUserCreator()">
-      <mat-card-content class = "formRestaurant">
-      
-          <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Email</mat-label>
-            <input matInput placeholder="Exemplo: Restaurant@gmail.com" value="">
-          </mat-form-field>
-          <br>
-          <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>address</mat-label>
-            <input matInput placeholder="Exemplo: Restaurant@gmail.com" value="">
-          </mat-form-field>
-          <br>
-          <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>PhoneNumber</mat-label>
-            <input matInput placeholder="Exemplo: (47)99999-9999" value="">
-          </mat-form-field>
-          <br>
-          <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Leave a comment</mat-label>
-            <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
-          </mat-form-field>
-          
-         
-          
-        </mat-card-content>
-     
-      </div>
-      <div *ngIf="!serviceLogin.isUserCreator()">
-        <mat-card-content class = "formUser">
-            <p>
-              Email:{{serviceRestaurant.restaurant.email}}
-            </p>
-            <p>
-              Address:{{serviceRestaurant.restaurant.address}}
-            </p>
-            <p>
-              PhoneNumber:{{serviceRestaurant.restaurant.phoneNumber}}
-            </p>
-            
-        </mat-card-content>
-       
-        </div>
-
+      <mat-card-content class="formUser">
+        <img class="restaurant-icon" [src]="createImgPath(serviceRestaurant.restaurant.photoURL)">
+        <p>Address: {{ serviceRestaurant.restaurant.address }}</p>
+        <p>Phone Number: {{ serviceRestaurant.restaurant.phoneNumber }}</p>
+        <p>Email: {{ serviceRestaurant.restaurant.email }}</p>
+        <p>Open Time: {{ serviceRestaurant.restaurant.openTime }}</p>
+        <p>Close Time: {{ serviceRestaurant.restaurant.closeTime }}</p>
+      </mat-card-content>
     </mat-card>
   </div>
-    <div class="plates-table">
-        <div class="example-container mat-elevation-z8">
-            <div class="example-table-container">
-                <table mat-table [dataSource]="this.servicePlate.PlateList" class="example-table" multiTemplateDataRows>
-                    <!-- Name Column -->
-                    <ng-container matColumnDef="name">
-                        <th mat-header-cell *matHeaderCellDef class="header">Name</th>
-                        <td mat-cell *matCellDef="let row" class="row" (click)="expandedPlate = expandedPlate === row ? null : row">{{row.name}}</td>
-                    </ng-container>
+  <div class="plates-table">
+    <div class="example-container mat-elevation-z8">
+      <div class="example-table-container">
+        <table
+          mat-table
+          [dataSource]="this.servicePlate.PlateList"
+          class="example-table"
+          multiTemplateDataRows
+        >
+          <!-- Name Column -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef class="header">Name</th>
+            <td
+              mat-cell
+              *matCellDef="let row"
+              class="row"
+              (click)="expandedPlate = expandedPlate === row ? null : row"
+            >
+              {{ row.name }}
+            </td>
+          </ng-container>
 
-                    <!-- Price Column -->
-                    <ng-container matColumnDef="price">
-                        <th mat-header-cell *matHeaderCellDef class="header">Price</th>
-                        <td mat-cell *matCellDef="let row" class="row" (click)="expandedPlate = expandedPlate === row ? null : row">{{row.price}}</td>
-                    </ng-container>
+          <!-- Price Column -->
+          <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef class="header">Price</th>
+            <td
+              mat-cell
+              *matCellDef="let row"
+              class="row"
+              (click)="expandedPlate = expandedPlate === row ? null : row"
+            >
+              {{ row.price }}
+            </td>
+          </ng-container>
 
-                    <ng-container matColumnDef=" " >
-                      <th mat-header-cell *matHeaderCellDef class="header" style="text-align: center;">
-                        <button mat-fab class="add-button" (click)="servicePlate.openAddPlate()" *ngIf="serviceLogin.isUserCreator()">
-                          <mat-icon class="add-icon">add</mat-icon>
-                        </button>
-                      </th>
-                      <td mat-cell *matCellDef="let row" class="row" style="text-align: center;">
-                        <button mat-icon-button color="warn" class="delete-button" (click)="onDelete(row.plateId)" *ngIf="serviceLogin.isUserRestaurant()">
-                          <mat-icon>delete_forever</mat-icon>
-                        </button>
-                        <button mat-fab class="add-order-button" *ngIf="!serviceLogin.isUserRestaurant()" (click)="serviceOrder.openOrderItemModal(row)">
-                          <mat-icon class="add-order-icon">add</mat-icon>
-                        </button>
-                      </td>
-                    </ng-container>
+          <ng-container matColumnDef=" ">
+            <th
+              mat-header-cell
+              *matHeaderCellDef
+              class="header"
+              style="text-align: center"
+            >
+              <button
+                mat-fab
+                class="add-button"
+                (click)="servicePlate.openAddPlate()"
+                *ngIf="serviceLogin.isUserCreator()"
+              >
+                <mat-icon class="add-icon">add</mat-icon>
+              </button>
+            </th>
+            <td
+              mat-cell
+              *matCellDef="let row"
+              class="row"
+              style="text-align: center"
+            >
+              <button
+                mat-icon-button
+                color="warn"
+                class="delete-button"
+                (click)="onDelete(row.plateId)"
+                *ngIf="serviceLogin.isUserRestaurant()"
+              >
+                <mat-icon>delete_forever</mat-icon>
+              </button>
+              <button
+                mat-fab
+                class="add-order-button"
+                *ngIf="!serviceLogin.isUserRestaurant()"
+                (click)="serviceOrder.openOrderItemModal(row)"
+              >
+                <mat-icon class="add-order-icon">add</mat-icon>
+              </button>
+            </td>
+          </ng-container>
 
-                    <ng-container matColumnDef="expandedDetail">
-                      <td mat-cell *matCellDef="let plate" [attr.colspan]="displayedColumns.length">
-                        <div class="plate-detail" [@detailExpand]="plate == expandedPlate ? 'expanded' : 'collapsed'">
-                          <div class="plate-description">
-                            {{plate.description}}
-                          </div>
-                        </div>
-                      </td>
-                    </ng-container>
-                    
+          <ng-container matColumnDef="expandedDetail">
+            <td
+              mat-cell
+              *matCellDef="let plate"
+              [attr.colspan]="displayedColumns.length"
+            >
+              <div
+                class="plate-detail"
+                [@detailExpand]="
+                  plate == expandedPlate ? 'expanded' : 'collapsed'
+                "
+              >
+                <div class="plate-description">
+                  <div class="plate-expansion">
+                    <img [src]="createImgPath(plate.photoURL)" />
+                    <p class="description">{{ plate.description }}</p>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </ng-container>
 
-                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                    <tr mat-row *matRowDef="let row; columns: displayedColumns;" 
-                      class="tr-body"
-                      [class.expanded-row]="expandedPlate === row"
-                      
-                      >
-                    </tr>
-                    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="detail-row"></tr>
-                </table>
-            </div>
-        </div>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr
+            mat-row
+            *matRowDef="let row; columns: displayedColumns"
+            class="tr-body"
+            [class.expanded-row]="expandedPlate === row"
+          ></tr>
+          <tr
+            mat-row
+            *matRowDef="let row; columns: ['expandedDetail']"
+            class="detail-row"
+          ></tr>
+        </table>
+      </div>
     </div>
+  </div>
 </div>

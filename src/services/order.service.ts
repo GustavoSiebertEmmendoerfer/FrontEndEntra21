@@ -7,7 +7,7 @@ import { Order } from 'src/models/order';
 import { OrderResponse } from 'src/models/orderResponse';
 import { Plate } from 'src/models/plate';
 import { ResponseModel } from 'src/models/response';
-import { userOrders } from 'src/models/UserOrders';
+import { userOrder } from 'src/models/UserOrder';
 import { LoginService } from './login.service';
 
 @Injectable({
@@ -26,7 +26,7 @@ export class OrderService {
   readonly OrdersURL = `https://localhost:44308/api/Orders`
   readonly OrdersItemURL = `https://localhost:44308/api/OrderItem`
   selectedPlate: Plate;
-  OrderClient : userOrders[] = [];
+  OrderClient : userOrder[] = [];
   lastOrder : OrderResponse;
   id : string = JSON.parse(localStorage.getItem("userInfo")).userId;
 
@@ -52,11 +52,12 @@ export class OrderService {
       .toPromise()
       .then((res) => this.lastOrder = res as OrderResponse);
   }
+
   getAllOrders()
   {
-    this.http.get<userOrders[]>(`https://localhost:44308/api/Orders/userOrders/user/${this.serviceLogin.user.userId}`)
+    this.http.get<userOrder[]>(`https://localhost:44308/api/Orders/userOrders/user/${this.serviceLogin.user.userId}`)
     .toPromise()
-    .then((res) => this.OrderClient= res as userOrders[]);
+    .then((res) => this.OrderClient= res as userOrder[]);
   }
 
   postOrderItem(i:number) {

@@ -63,6 +63,7 @@
       }}</mat-error>
     </mat-form-field>
   </form>
+  <app-upload (onUploadFinished)="uploadFinished($event)"></app-upload>
   </mat-dialog-content>
   <mat-dialog-actions align="end">
     <button 

@@ -39,7 +39,8 @@ export class PlateService {
       Name: this.formDataPlate.name,
       Price: this.formDataPlate.price,
       Description: this.formDataPlate.description,
-      RestaurantEmail: JSON.parse(localStorage.getItem('userInfo')).email 
+      RestaurantEmail: JSON.parse(localStorage.getItem('userInfo')).email,
+      PhotoURL: this.formDataPlate.photoURL
     }
 
     return this.http.post(this.PlateURL, body);

@@ -48,6 +48,16 @@ export class LoginService {
     return false
   }
 
+  isUserClient() {
+    if (this.isUserLogged()) {
+      if (JSON.parse(localStorage.getItem('userInfo')).roles[0] === 'Client') 
+      {
+       return true
+      } 
+    }
+    return false 
+  }
+
   isUserRestaurant() {
     if (this.isUserLogged()) {
       if (JSON.parse(localStorage.getItem('userInfo')).roles[0] === 'Restaurant') 
@@ -55,7 +65,7 @@ export class LoginService {
        return true
       } 
     }
-    return false
+    return false 
   }
 
   onLogout() {

@@ -4,3 +4,16 @@
   margin-left: 15px;
   line-height: 36px;
 }
+
+.button {
+  background-color: crimson;
+  color: white;
+  border: 2px solid white;
+  margin-left: 15px;
+}
+
+.button:hover {
+  background-color: whitesmoke;
+  border: 2px solid crimson;
+  color: black;
+}

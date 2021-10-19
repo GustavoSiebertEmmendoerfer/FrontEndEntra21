@@ -48,4 +48,17 @@ export class AddPlateFormComponent implements OnInit {
     form.form.reset();
     this.servicePlate.formDataPlate = new Plate();
   }
+
+  response = { dbPath: '' };
+
+  uploadFinished = (event: any) => {
+    console.log(event);
+    this.response = event;
+
+    this.servicePlate.formDataPlate.photoURL = this.response.dbPath;
+  };
+
+  createImgPath = (serverPath: string) => {
+    return `https://localhost:44308/${serverPath}`;
+  };
 }

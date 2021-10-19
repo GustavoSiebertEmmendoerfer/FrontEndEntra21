@@ -6,5 +6,6 @@ export class Plate {
     description: string = '';
     price: number = 0;
     restaurant: Restaurant;
+    photoURL: string = ''
   }
   

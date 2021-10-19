@@ -4,7 +4,7 @@
       <mat-icon>menu</mat-icon>
     </button>
     <div class="app-name" [routerLink]="['/menu']">
-    <h1>Gustavo Marmitas</h1>
+    <h1>Marmiflix</h1>
   </div>
     <button *ngIf="!serviceLogin.isUserLogged()" mat-raised-button class="btn btn-register" [matMenuTriggerFor]="register">
         <span>Register</span> 
@@ -56,7 +56,7 @@
       </button>
       </mat-nav-list>
     </mat-sidenav>
-    <mat-sidenav-content>
+    <mat-sidenav-content class="content">
       <router-outlet> </router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>
