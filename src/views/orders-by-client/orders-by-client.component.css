@@ -15,7 +15,7 @@ table {
 }
 
 tr.detail-row {
-  height: 0;
+  height: 0px;
 }
 
 tr.tr-body:not(.expanded-row):hover {
@@ -52,4 +52,35 @@ tr.tr-body:hover {
   margin-top: 30px;
   display: flex;
   flex-direction: row;
+}
+
+.plate-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+.buttons {
+  margin: 20px 0px;
+}
+
+button {
+  background-color: crimson;
+  color: white;
+  border: 2px solid white;
+  margin-left: 15px;
+  width: 130px !important;
+}
+
+button:hover {
+  background-color: whitesmoke;
+  border: 2px solid crimson;
+  color: black;
+}
+
+.cancel {
+  margin-left: 170px !important;
+}
+
+.complete {
+  margin-left: 300px;
 }

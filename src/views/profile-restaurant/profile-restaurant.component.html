@@ -9,7 +9,10 @@
       </mat-card-header>
 
       <mat-card-content class="formUser">
-        <img class="restaurant-icon" [src]="createImgPath(serviceRestaurant.restaurant.photoURL)">
+        <img
+          class="restaurant-icon"
+          [src]="createImgPath(serviceRestaurant.restaurant.photoURL)"
+        />
         <p>Address: {{ serviceRestaurant.restaurant.address }}</p>
         <p>Phone Number: {{ serviceRestaurant.restaurant.phoneNumber }}</p>
         <p>Email: {{ serviceRestaurant.restaurant.email }}</p>
@@ -49,7 +52,7 @@
               class="row"
               (click)="expandedPlate = expandedPlate === row ? null : row"
             >
-              {{ row.price }}
+              {{ row.price * 22 }}
             </td>
           </ng-container>
 

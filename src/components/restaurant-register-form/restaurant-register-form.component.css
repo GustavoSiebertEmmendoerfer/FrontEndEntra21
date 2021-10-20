@@ -13,3 +13,8 @@ input {
 .mat-dialog-container {
   width: 500px;
 }
+
+mat-label {
+  color: white;
+}
+

@@ -53,15 +53,13 @@ export class OrderService {
       .then((res) => this.lastOrder = res as OrderResponse);
   }
 
-  getAllOrders()
-  {
+  getAllOrders(){
     this.http.get<userOrder[]>(`https://localhost:44308/api/Orders/userOrders/user/${this.serviceLogin.user.userId}`)
     .toPromise()
     .then((res) => this.OrderClient= res as userOrder[]);
   }
 
   postOrderItem(i:number) {
-    debugger
     const body = {
       quantity : i,
       orderId : this.lastOrder.maiorValor,
@@ -70,5 +68,10 @@ export class OrderService {
 
     return this.http.post<ResponseModel>(this.OrdersItemURL, body).subscribe(x=>console.log(x.responseCode));
   }
+
+  putOrder(id:number,userOrder:userOrder) {
+    return this.http.put<Order>(this.OrdersURL+'/'+id,userOrder)
+  }
+
 
 }
