@@ -37,13 +37,11 @@ export class OrderService {
   }
 
   postOrder() {
-
     const body = {
       ClientEmail: this.serviceLogin.user.email,
       RestaurantEmail: this.router.url.substring(12)
     }
-
-    return this.http.post<ResponseModel>(this.OrdersURL, body).subscribe();
+    return this.http.post<ResponseModel>(this.OrdersURL, body).subscribe()
   }
 
   LastOrder() {
@@ -66,7 +64,7 @@ export class OrderService {
       plateId: this.selectedPlate.plateId
     }
 
-    return this.http.post<ResponseModel>(this.OrdersItemURL, body).subscribe(x=>console.log(x.responseCode));
+    return this.http.post<ResponseModel>(this.OrdersItemURL, body)
   }
 
   putOrder(id:number,userOrder:userOrder) {
